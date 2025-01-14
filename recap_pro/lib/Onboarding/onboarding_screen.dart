@@ -13,6 +13,7 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   PageController _controller = PageController();
+  bool isLastPage = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +21,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         children: [
           PageView(
             controller: _controller,
+            onPageChanged: (index) {
+              setState(() {
+                isLastPage = (index == 2);
+              });
+            },
             children: [
               Onboarding1(),
               Onboarding2(),
