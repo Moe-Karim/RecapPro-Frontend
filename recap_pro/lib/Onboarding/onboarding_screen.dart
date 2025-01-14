@@ -19,6 +19,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: Stack(
         children: [
           PageView(
+            controller: _controller,
             children: [
               Onboarding1(),
               Onboarding2(),
@@ -30,9 +31,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text('next'),
+                  TextButton(
+                      onPressed: () {
+                        _controller.nextPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.easeInOutCirc);
+                      },
+                      child: Text('next')),
                   SmoothPageIndicator(controller: _controller, count: 3),
-                  Text('skip'),
+                  TextButton(
+                      onPressed: () {
+                        _controller.nextPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.easeInOutCirc);
+                      },
+                      child: Text('skip')),
                 ],
               )),
         ],
