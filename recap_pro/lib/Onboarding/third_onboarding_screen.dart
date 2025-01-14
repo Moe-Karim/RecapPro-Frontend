@@ -5,8 +5,8 @@ class Onboarding3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
- return Scaffold(
-      body:   Center(
+    return Scaffold(
+      body: Center(
         child: Column(
           children: [
             Container(
@@ -20,24 +20,30 @@ class Onboarding3 extends StatelessWidget {
                     .cover, // Optional: Adjusts how the image fits within the constraints
               ),
             ),
-                      const Text(
-            "VIDEO SEGMENTATION",
-            style: TextStyle(
-              fontSize: 24.0,
-              color: Color.fromARGB(255, 0, 0, 0),
+            const SizedBox(
+              height: 25.0,
             ),
-          ),
-                    const SizedBox(
-            width: 350.0,
-            child: Text(
-              "Automatically organize recordings into clear, topic-based sections with smart video segmentation.",
+            const Text(
+              "VIDEO SEGMENTATION",
               style: TextStyle(
-                fontSize: 20.0,
+                fontSize: 24.0,
                 color: Color.fromARGB(255, 0, 0, 0),
               ),
-              textAlign: TextAlign.center,
             ),
-          )
+            const SizedBox(
+              height: 25.0,
+            ),
+            const SizedBox(
+              width: 350.0,
+              child: Text(
+                "Automatically organize recordings into clear, topic-based sections with smart video segmentation.",
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                ),
+                textAlign: TextAlign.center,
+              ),
+            )
           ],
         ),
       ),
