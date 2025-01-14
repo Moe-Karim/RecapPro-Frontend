@@ -26,8 +26,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ],
           ),
           Container(
-            alignment: Alignment(0,0.8),
-            child: SmoothPageIndicator(controller: _controller, count: 3)),
+              alignment: Alignment(0, 0.8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text('next'),
+                  SmoothPageIndicator(controller: _controller, count: 3),
+                  Text('skip'),
+                ],
+              )),
         ],
       ),
     );
