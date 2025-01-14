@@ -28,7 +28,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ],
           ),
-          SmoothPageIndicator(controller: _controller, count: 3),
+          Container(
+            alignment: Alignment(0,0.8),
+            child: SmoothPageIndicator(controller: _controller, count: 3)),
         ],
       ),
     );
