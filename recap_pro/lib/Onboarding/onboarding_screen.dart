@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recap_pro/Onboarding/first_onboarding_screen.dart';
 import 'package:recap_pro/Onboarding/second_onboarding_screen.dart';
 import 'package:recap_pro/Onboarding/third_onboarding_screen.dart';
+import 'package:recap_pro/login/login_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -48,9 +49,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   SmoothPageIndicator(controller: _controller, count: 3),
                   TextButton(
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
                           return const LoginPage();
-                        }))
+                        }));
                       },
                       child: Text('skip')),
                 ],
