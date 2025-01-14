@@ -48,9 +48,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   SmoothPageIndicator(controller: _controller, count: 3),
                   TextButton(
                       onPressed: () {
-                        _controller.nextPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.easeInOutCirc);
+                        Navigator.push(context, MaterialPageRoute(builder: (context){
+                          return const LoginPage();
+                        }))
                       },
                       child: Text('skip')),
                 ],
