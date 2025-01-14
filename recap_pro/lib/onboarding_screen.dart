@@ -13,9 +13,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return Scaffold(
       body: PageView(
         children: [
-          Container(),
-          Container(),
-          Container(),
+          Container(color: Colors.black,),
+          Container(color: Colors.white,),
+          Container(color: Colors.purple,),
         ],
       ),
     );
