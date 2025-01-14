@@ -45,8 +45,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               duration: Duration(milliseconds: 500),
                               curve: Curves.easeInOutCirc);
                         },
-                        child: Text('next')),
-                  SmoothPageIndicator(controller: _controller, count: 3),
+                        child: const Text('Next',
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 0, 0, 0)))),
+                  SmoothPageIndicator(
+                    controller: _controller,
+                    count: 3,
+                    effect: ExpandingDotsEffect(
+                      activeDotColor:
+                          const Color(0xFF61DBFB), // Color for active dot
+                      dotColor: Colors.grey[400]!, // Color for inactive dots
+                      dotHeight: 7.0, // Size of the dots
+                      dotWidth: 7.0, // Size of the dots
+                      spacing: 5.0, // Space between dots
+                    ),
+                  ),
                   TextButton(
                       onPressed: () {
                         Navigator.push(context,
@@ -54,7 +67,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           return const LoginPage();
                         }));
                       },
-                      child: Text('skip')),
+                      child: const Text('Skip',
+                          style:
+                              TextStyle(color: Color.fromARGB(255, 0, 0, 0)))),
                 ],
               )),
         ],
