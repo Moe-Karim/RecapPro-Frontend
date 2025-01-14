@@ -37,13 +37,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  TextButton(
-                      onPressed: () {
-                        _controller.nextPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.easeInOutCirc);
-                      },
-                      child: Text('next')),
+                  if (!isLastPage)
+                    TextButton(
+                        onPressed: () {
+                          _controller.nextPage(
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.easeInOutCirc);
+                        },
+                        child: Text('next')),
                   SmoothPageIndicator(controller: _controller, count: 3),
                   TextButton(
                       onPressed: () {
