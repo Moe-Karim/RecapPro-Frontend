@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:recap_pro/Onboarding/first_onboarding_screen.dart';
+import 'package:recap_pro/Onboarding/second_onboarding_screen.dart';
+import 'package:recap_pro/Onboarding/third_onboarding_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -17,15 +20,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         children: [
           PageView(
             children: [
-              Container(
-                color: Colors.black,
-              ),
-              Container(
-                color: Colors.white,
-              ),
-              Container(
-                color: Colors.purple,
-              ),
+              Onboarding1(),
+              Onboarding2(),
+              Onboarding3(),
             ],
           ),
           Container(
