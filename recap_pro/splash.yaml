@@ -5,3 +5,8 @@ flutter_native_splash:
 
   color: "#FFFFFF"
   background_image: "assets/Mohamad Karim Fahs_Text.png"
+
+  android_12:
+    color: "#ffffff"
+    image: "assets/Splash_NoText.png"
+    branding: "assets/Recap (2).png"
