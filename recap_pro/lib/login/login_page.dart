@@ -30,9 +30,9 @@ class _LoginPageState extends State<LoginPage> {
               margin: EdgeInsets.all(10.0),
               child: const Align(
                 alignment: Alignment.topLeft,
-                child: const Text(
+                child: Text(
                   "Username",
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  style: loginText,
                 ),
               ),
             ),
@@ -51,6 +51,14 @@ class _LoginPageState extends State<LoginPage> {
                         border: OutlineInputBorder(), hintText: "Username")),
               ),
             ),
+            SizedBox(height: 10.0),
+            Container(
+              margin: EdgeInsets.all(10.0),
+              child: const Align(
+                alignment: Alignment.topLeft,
+                child: Text("Password", style: loginText),
+              ),
+            )
           ],
         ),
       ),
