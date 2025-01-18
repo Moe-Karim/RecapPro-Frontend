@@ -53,15 +53,15 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Edit Video",
-            style: title,
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Edit Video",
+          style: title,
         ),
-        body: FutureBuilder(
+      ),
+      body: SingleChildScrollView(
+        child: FutureBuilder(
           future: _initializeVideoPlayerFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
