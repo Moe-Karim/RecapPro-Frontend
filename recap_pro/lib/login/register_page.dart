@@ -14,6 +14,11 @@ class _RegisterPageState extends State<RegisterPage> {
       appBar: AppBar(
         title: Text("Register",style: title,),
       ),
+      body: SingleChildScrollView(
+        child: Column(
+
+        ),
+      ),,
     );
   }
 }
