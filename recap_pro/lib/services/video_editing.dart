@@ -31,7 +31,7 @@ class VideoEditingLogic {
     }
   }
 
-    Future<String> generateTextFile(String transcript) async {
+  Future<String> generateTextFile(String transcript) async {
     final directory = await getApplicationDocumentsDirectory();
     final filePath = '${directory.path}/transcription.txt';
     final file = File(filePath);
@@ -39,5 +39,9 @@ class VideoEditingLogic {
     await file.writeAsString(transcript);
 
     return filePath;
+  }
+
+  Future<void> downloadVideo(String videoUrl) async {
+    
   }
 }
