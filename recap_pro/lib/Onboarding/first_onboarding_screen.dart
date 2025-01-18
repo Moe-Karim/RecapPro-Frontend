@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recap_pro/utils/design.dart';
 
 class Onboarding1 extends StatelessWidget {
   const Onboarding1({super.key});
@@ -25,10 +26,7 @@ class Onboarding1 extends StatelessWidget {
             ),
             const Text(
               "GAP FILLING",
-              style: TextStyle(
-                fontSize: 24.0,
-                color: Color.fromARGB(255, 0, 0, 0),
-              ),
+              style: (title),
             ),
             const SizedBox(
               height: 25.0,
@@ -37,10 +35,7 @@ class Onboarding1 extends StatelessWidget {
               width: 350.0,
               child: Text(
                 "Seamlessly restore missing moments with AI-driven gap filling for uninterrupted video clarity",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Color.fromARGB(255, 0, 0, 0),
-                ),
+                style: 
                 textAlign: TextAlign.center,
               ),
             )
