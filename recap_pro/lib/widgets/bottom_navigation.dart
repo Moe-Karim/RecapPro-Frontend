@@ -32,6 +32,13 @@ class BottomNavigation extends StatelessWidget {
             ),
             label: 'Home',
           ),
+          NavigationDestination(
+            icon: Icon(
+              Icons.video_settings_outlined,
+              color: currentPage == 1 ? Colors.white : const Color(0xFF61DBFB),
+            ),
+            label: 'Edit',
+          ),
         ],
       ),
     );
