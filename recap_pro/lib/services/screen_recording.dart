@@ -4,6 +4,9 @@ import 'package:permission_handler/permission_handler.dart';
 
 class RecordingService {
   bool isRecording = false;
+    void _setRecordingState(bool state) {
+    isRecording = state;
+  }
   Future<void> requestPermissions() async {
     await [
       Permission.microphone,
