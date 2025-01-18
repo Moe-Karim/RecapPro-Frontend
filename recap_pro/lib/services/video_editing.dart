@@ -50,6 +50,8 @@ class VideoEditingLogic {
         final fileName = videoUrl.split('/').last;
         final filePath = '${directory.path}/$fileName';
         final file = File(filePath);
+
+        final response = await http.get(Uri.parse(videoUrl));
       } catch (e) {
         throw Exception('Error downloading video: $e');
       }
