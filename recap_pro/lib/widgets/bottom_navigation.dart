@@ -54,6 +54,8 @@ class BottomNavigation extends StatelessWidget {
             label: 'Settings',
           ),
         ],
+        onDestinationSelected: onPageSelected,
+
       ),
     );
   }
