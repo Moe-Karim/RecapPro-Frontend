@@ -21,6 +21,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   double _totalDuration = 1.0;
 
   bool _isUploading = false;
+  String? _result;
   List<String> _segments = [];
   final _videoEditingLogic = VideoEditingLogic();
 
@@ -29,13 +30,21 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       _isUploading = true;
     });
     try {
-      final result =
-          await _videoEditingLogic.uploadVideo(File(widget.videoPath));
-                  setState(() {
-          _segments = List<String>.from(result['segments']);
-          _videoEditingLogic.generateTextFile(result['content']);
-        });
-    } catch (e) {}
+      final data = await _videoEditingLogic.uploadVideo(File(widget.videoPath));
+      setState(() {
+        _segments = List<String>.from(data['segments']);
+        _videoEditingLogic.generateTextFile(data['content']);
+      });
+    } catch (e) {
+      setState(() {
+        _result = "Error uploading video: $e";
+        print("$e");
+      });
+    } finally {
+      setState(() {
+        _isUploading = false;
+      });
+    }
   }
 
   @override
