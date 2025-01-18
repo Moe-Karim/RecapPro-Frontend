@@ -39,10 +39,15 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       future: _initializeVideoPlayerFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          return AspectRatio(
-            aspectRatio: _controller.value.aspectRatio,
-            child: VideoPlayer(_controller),
+          return Column(
+            children: [
+              AspectRatio(
+                aspectRatio: _controller.value.aspectRatio,
+                child: VideoPlayer(_controller),
+              ),
+            ],
           );
+
         } else {
           return const Center(child: CircularProgressIndicator());
         }
