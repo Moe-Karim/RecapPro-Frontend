@@ -87,7 +87,10 @@ class _LoginPageState extends State<LoginPage> {
               width: 250.0,
               height: 50.0,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  String username = _usernameController.text;
+                  String password = _passwordController.text;
+                },
                 style: loginBtn,
                 child: Text("Login"),
               ),
@@ -96,9 +99,14 @@ class _LoginPageState extends State<LoginPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("Don't have an account? ",style: TextStyle(fontSize: 16.0),),
-                  const Text("Register Now!",style: linkText,)
-
+                  const Text(
+                    "Don't have an account? ",
+                    style: TextStyle(fontSize: 16.0),
+                  ),
+                  const Text(
+                    "Register Now!",
+                    style: linkText,
+                  )
                 ],
               ),
             )
