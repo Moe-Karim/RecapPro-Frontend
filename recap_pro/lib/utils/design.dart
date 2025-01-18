@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-const TextStyle buttonStyle = TextStyle(color: Colors.black);
+const TextStyle buttonTextStyle = TextStyle(color: Colors.black);
 
 
 const ExpandingDotsEffect indicatorEffect = ExpandingDotsEffect(
