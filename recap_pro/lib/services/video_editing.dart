@@ -17,6 +17,11 @@ class VideoEditingLogic {
 
     try{
             final response = await request.send();
+            if (response.statusCode == 200) {
+        final responseData = await response.stream.bytesToString();
+        final data = json.decode(responseData);
+        return(data);
+            }
 
     }catch{
 
