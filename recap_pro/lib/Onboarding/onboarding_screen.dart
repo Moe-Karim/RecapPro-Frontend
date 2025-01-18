@@ -3,6 +3,7 @@ import 'package:recap_pro/Onboarding/first_onboarding_screen.dart';
 import 'package:recap_pro/Onboarding/second_onboarding_screen.dart';
 import 'package:recap_pro/Onboarding/third_onboarding_screen.dart';
 import 'package:recap_pro/login/login_page.dart';
+import 'package:recap_pro/utils/design.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -51,14 +52,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   SmoothPageIndicator(
                     controller: _controller,
                     count: 3,
-                    effect: ExpandingDotsEffect(
-                      activeDotColor:
-                          const Color(0xFF61DBFB), // Color for active dot
-                      dotColor: Colors.grey[400]!, // Color for inactive dots
-                      dotHeight: 7.0, // Size of the dots
-                      dotWidth: 7.0, // Size of the dots
-                      spacing: 5.0, // Space between dots
-                    ),
+                    effect: indicatorEffect,
                   ),
                   TextButton(
                       onPressed: () {
