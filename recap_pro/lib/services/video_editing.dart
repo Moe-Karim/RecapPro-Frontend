@@ -52,6 +52,12 @@ class VideoEditingLogic {
         final file = File(filePath);
 
         final response = await http.get(Uri.parse(videoUrl));
+        if (response.statusCode == 200) {
+          await file.writeAsBytes(response.bodyBytes);
+          OpenFile.open(filePath);
+        } else {
+          throw Exception('Failed to download video');
+        }
       } catch (e) {
         throw Exception('Error downloading video: $e');
       }
