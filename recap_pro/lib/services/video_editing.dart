@@ -14,5 +14,11 @@ class VideoEditingLogic {
       Uri.parse('http://10.0.2.2:3000/upload'),
     );
     request.files.add(await http.MultipartFile.fromPath("video", _video!.path));
+
+    try{
+
+    }catch{
+      
+    }
   }
 }
