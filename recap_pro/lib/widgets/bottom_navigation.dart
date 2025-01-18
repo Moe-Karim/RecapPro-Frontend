@@ -18,12 +18,14 @@ class BottomNavigation extends StatelessWidget {
         indicatorColor: Color(0xFF61DBFB),
            labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((states) {
           if (states.contains(WidgetState.selected)) {
-            return const TextStyle(color: Colors.white); // Selected item text color
+            return const TextStyle(color: Colors.white); 
           }
-          return const TextStyle(color: Color(0xFF61DBFB)); // Unselected item text color
+          return const TextStyle(color: Color(0xFF61DBFB));
         }),
       ) ,
-      child: ,
+      child:NavigationBar(
+        backgroundColor: Colors.black,
+      ) ,
     );
   }
 }
