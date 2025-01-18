@@ -14,7 +14,17 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: const Text("Login"),
       ),
-      body: SingleChildScrollView(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 25.0),
+            Image.asset("./assets/splash_Text.png",
+            width: 200.0,
+            height: 200.0,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
