@@ -21,6 +21,13 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   bool _isUploading = false;
   List<String> _segments = [];
+
+  Future<void> _uploadVideo() async {
+    setState(() {
+      _isUploading = true;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
