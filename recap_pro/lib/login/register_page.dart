@@ -136,7 +136,16 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 20,
+            ),
+             SizedBox(
+              width: 250.0,
+              height: 50.0,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: loginBtn,
+                child: Text("Register"),
+              ),
             ),
           ],
         ),
