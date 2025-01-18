@@ -28,6 +28,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     setState(() {
       _isUploading = true;
     });
+    try {
+      final result =
+          await _videoEditingLogic.uploadVideo(File(widget.videoPath));
+    } catch (e) {}
   }
 
   @override
