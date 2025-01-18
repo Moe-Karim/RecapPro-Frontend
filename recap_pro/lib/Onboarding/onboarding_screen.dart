@@ -14,8 +14,17 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  PageController _controller = PageController();
+
+  final PageController _controller = PageController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   bool isLastPage = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +55,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               duration: Duration(milliseconds: 500),
                               curve: Curves.easeInOutCirc);
                         },
-                        child: const Text('Next', style:(buttonTextStyle))),
+                        child: const Text('Next', style: (buttonTextStyle))),
                   SmoothPageIndicator(
                     controller: _controller,
                     count: 3,
@@ -59,8 +68,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           return const LoginPage();
                         }));
                       },
-                      child: const Text('Skip',
-                          style:(buttonTextStyle))),
+                      child: const Text('Skip', style: (buttonTextStyle))),
                 ],
               )),
         ],
