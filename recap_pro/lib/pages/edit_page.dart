@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:recap_pro/services/video_editing.dart';
 import 'package:recap_pro/utils/design.dart';
 import 'package:video_player/video_player.dart';
 
@@ -21,6 +22,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   bool _isUploading = false;
   List<String> _segments = [];
+  final _videoEditingLogic = VideoEditingLogic();
 
   Future<void> _uploadVideo() async {
     setState(() {
