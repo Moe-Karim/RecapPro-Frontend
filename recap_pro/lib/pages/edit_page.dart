@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:recap_pro/utils/design.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
@@ -53,6 +54,9 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Edit Video",style: title,),
+      ),
       body: FutureBuilder(
         future: _initializeVideoPlayerFuture,
         builder: (context, snapshot) {
@@ -63,18 +67,25 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                   aspectRatio: _controller.value.aspectRatio,
                   child: VideoPlayer(_controller),
                 ),
-                IconButton(
-                  icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow),
-                  onPressed: _playPause,
-                ),
-                Slider(
+                SizedBox(height: 30.0,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow,size: 50.0,color: Color(0xFF61DBFB),),
+                      onPressed: _playPause,
+                    ),
+                    Slider(
                   min: 0.0,
                   max: _totalDuration,
                   value: _currentPosition,
                   onChanged: _seekTo,
-                  activeColor: Colors.blue,
-                  inactiveColor: Colors.grey,
+                  activeColor: Color(0xFF61DBFB),
+                  inactiveColor: Colors.black,
                 ),
+                  ],
+                ),
+
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
