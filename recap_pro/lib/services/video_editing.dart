@@ -29,4 +29,14 @@ class VideoEditingLogic {
       throw Exception('Error uploading video: $e');
     }
   }
+
+    Future<String> generateTextFile(String transcript) async {
+    final directory = await getApplicationDocumentsDirectory();
+    final filePath = '${directory.path}/transcription.txt';
+    final file = File(filePath);
+
+    await file.writeAsString(transcript);
+
+    return filePath;
+  }
 }
