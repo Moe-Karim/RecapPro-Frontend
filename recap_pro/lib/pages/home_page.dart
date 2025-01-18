@@ -18,12 +18,21 @@ class _HomePageState extends State<HomePage> {
   final ImagePicker _picker = ImagePicker();
 
   Future<void> getVideo() async {
-  
-  final XFile? pickedFile = await _picker.pickVideo(source: ImageSource.gallery);
-  
-
-}
-
+    final XFile? pickedFile =
+        await _picker.pickVideo(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => VideoPlayer(videoPath: pickedFile.path),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('No video selected')),
+      );
+    }
+  }
 
   Future<void> _handleRecording() async {
     try {
