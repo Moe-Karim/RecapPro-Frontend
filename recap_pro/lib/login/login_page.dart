@@ -96,6 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text("Login"),
               ),
             ),
+            SizedBox(height: 10.0,),
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
