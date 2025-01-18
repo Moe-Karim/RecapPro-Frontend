@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:recap_pro/pages/edit_page.dart';
 import 'package:recap_pro/services/screen_recording.dart';
 import 'package:recap_pro/utils/design.dart';
 import 'package:recap_pro/widgets/bottom_navigation.dart';
