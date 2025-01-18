@@ -39,6 +39,13 @@ class BottomNavigation extends StatelessWidget {
             ),
             label: 'Edit',
           ),
+          NavigationDestination(
+            icon: Icon(
+              Icons.person_outline_rounded,
+              color: currentPage == 2 ? Colors.white : const Color(0xFF61DBFB),
+            ),
+            label: 'Profile',
+          ),
         ],
       ),
     );
