@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:open_file/open_file.dart';
 import 'package:recap_pro/services/video_editing.dart';
 import 'package:recap_pro/utils/design.dart';
 import 'package:video_player/video_player.dart';
