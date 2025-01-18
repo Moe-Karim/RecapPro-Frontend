@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class VideoPlayer extends StatefulWidget {
-  const VideoPlayer({super.key, required String videoPath});
+  final String videoPath;
+  const VideoPlayer({super.key, required this.videoPath});
 
   @override
   State<VideoPlayer> createState() => _VideoPlayerState();
