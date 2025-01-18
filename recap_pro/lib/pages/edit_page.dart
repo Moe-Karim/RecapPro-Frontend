@@ -67,9 +67,12 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
             if (snapshot.connectionState == ConnectionState.done) {
               return Column(
                 children: [
-                  AspectRatio(
-                    aspectRatio: _controller.value.aspectRatio,
-                    child: VideoPlayer(_controller),
+                  SizedBox(
+                    height: 300.0,
+                    child: AspectRatio(
+                      aspectRatio: _controller.value.aspectRatio,
+                      child: VideoPlayer(_controller),
+                    ),
                   ),
                   SizedBox(
                     height: 30.0,
@@ -85,13 +88,15 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                         ),
                         onPressed: _playPause,
                       ),
-                      Slider(
-                        min: 0.0,
-                        max: _totalDuration,
-                        value: _currentPosition,
-                        onChanged: _seekTo,
-                        activeColor: Color(0xFF61DBFB),
-                        inactiveColor: Colors.black,
+                      Expanded(
+                        child: Slider(
+                          min: 0.0,
+                          max: _totalDuration,
+                          value: _currentPosition,
+                          onChanged: _seekTo,
+                          activeColor: Color(0xFF61DBFB),
+                          inactiveColor: Colors.black,
+                        ),
                       ),
                     ],
                   ),
