@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => VideoPlayer(videoPath: pickedFile.path),
+          builder: (context) => VideoPlayerScreen(videoPath: pickedFile.path),
         ),
       );
     } else {
