@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recap_pro/utils/design.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,6 +11,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home",style: title,),
+      ),
+    );
   }
 }
