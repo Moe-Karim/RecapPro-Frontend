@@ -16,6 +16,9 @@ const TextStyle loginText = TextStyle(
     fontWeight: FontWeight.bold,
     color: Color.fromARGB(255, 0, 0, 0));
 
+const TextStyle linkText =
+    TextStyle(color: Color(0xFF61DBFB), fontStyle: FontStyle.italic);
+
 const TextStyle buttonTextStyle = TextStyle(color: Colors.black);
 
 ButtonStyle loginBtn = ElevatedButton.styleFrom(
