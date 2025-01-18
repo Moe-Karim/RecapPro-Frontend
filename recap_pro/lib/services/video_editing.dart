@@ -16,9 +16,10 @@ class VideoEditingLogic {
     request.files.add(await http.MultipartFile.fromPath("video", _video!.path));
 
     try{
+            final response = await request.send();
 
     }catch{
-      
+
     }
   }
 }
