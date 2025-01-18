@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class BottomNavigation extends StatelessWidget {
-
   final int currentPage;
   final Function(int) onPageSelected;
 
@@ -14,18 +13,27 @@ class BottomNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NavigationBarTheme(
-      data:NavigationBarThemeData(
+      data: NavigationBarThemeData(
         indicatorColor: Color(0xFF61DBFB),
-           labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((states) {
+        labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((states) {
           if (states.contains(WidgetState.selected)) {
-            return const TextStyle(color: Colors.white); 
+            return const TextStyle(color: Colors.white);
           }
           return const TextStyle(color: Color(0xFF61DBFB));
         }),
-      ) ,
-      child:NavigationBar(
+      ),
+      child: NavigationBar(
         backgroundColor: Colors.black,
-      ) ,
+        destinations: [
+          NavigationDestination(
+            icon: Icon(
+              Icons.home_outlined,
+              color: currentPage == 0 ? Colors.white : const Color(0xFF61DBFB),
+            ),
+            label: 'Home',
+          ),
+        ],
+      ),
     );
   }
 }
