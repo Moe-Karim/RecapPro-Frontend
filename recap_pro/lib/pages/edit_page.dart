@@ -31,6 +31,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     try {
       final result =
           await _videoEditingLogic.uploadVideo(File(widget.videoPath));
+                  setState(() {
+          _segments = List<String>.from(result['segments']);
+          _videoEditingLogic.generateTextFile(result['content']);
+        });
     } catch (e) {}
   }
 
