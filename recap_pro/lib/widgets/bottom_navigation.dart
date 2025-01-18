@@ -13,6 +13,11 @@ class BottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return NavigationBarTheme(
+      data:NavigationBarThemeData(
+        indicatorColor: Color(0xFF61DBFB),
+      ) ,
+      child: ,
+    );
   }
 }
