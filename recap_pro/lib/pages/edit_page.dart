@@ -19,6 +19,8 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   double _currentPosition = 0.0;
   double _totalDuration = 1.0;
 
+  bool _isUploading = false;
+
   @override
   void initState() {
     super.initState();
