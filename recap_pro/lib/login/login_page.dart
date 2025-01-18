@@ -91,6 +91,16 @@ class _LoginPageState extends State<LoginPage> {
                 style: loginBtn,
                 child: Text("Login"),
               ),
+            ),
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Don't have an account? ",style: TextStyle(fontSize: 16.0),),
+                  const Text("Register Now!")
+
+                ],
+              ),
             )
           ],
         ),
