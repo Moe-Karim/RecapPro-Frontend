@@ -15,7 +15,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   bool _isPlaying = false;
   double _currentPosition = 0.0;
   double _totalDuration = 1.0;
-  
+
   @override
   void initState() {
     super.initState();
@@ -42,6 +42,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         _isPlaying = true;
       }
     });
+  }
+  void _seekTo(double value) {
+    final position = Duration(seconds: value.toInt());
+    _controller.seekTo(position);
   }
 
   @override
