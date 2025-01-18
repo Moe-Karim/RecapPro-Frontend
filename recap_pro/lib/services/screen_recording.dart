@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_recording/flutter_screen_recording.dart';
+import 'package:gal/gal.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class RecordingService {
@@ -36,6 +37,13 @@ class RecordingService {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Recording saved to: $path")),
         );
+        final hasAccess = await Gal.hasAccess();
+        if (hasAccess) {
+          await Gal.putVideo(path);
+            ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Video saved to gallery")),
+        );
+        }
       }
     } catch (e) {
       print("Error stopping recording: $e");
