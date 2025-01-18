@@ -10,17 +10,27 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-    int currentPage = 0;
+  int currentPage = 0;
+
+  void _onPageSelected(int index) {
+    setState(() {
+      currentPage = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text("Home",style: title,),
+        title: Text(
+          "Home",
+          style: title,
+        ),
       ),
       body: Container(),
-      bottomNavigationBar: BottomNavigation(currentPage: currentPage, onPageSelected: onPageSelected),
+      bottomNavigationBar: BottomNavigation(
+          currentPage: currentPage, onPageSelected: _onPageSelected),
     );
   }
 }
