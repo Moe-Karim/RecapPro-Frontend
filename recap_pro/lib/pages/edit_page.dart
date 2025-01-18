@@ -21,7 +21,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     super.initState();
     _controller = VideoPlayerController.asset(widget.videoPath);
     _initializeVideoPlayerFuture = _controller.initialize();
-        _controller.addListener(() {
+    _controller.addListener(() {
       if (_controller.value.isInitialized) {
         setState(() {
           _currentPosition = _controller.value.position.inSeconds.toDouble();
@@ -29,7 +29,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         });
       }
     });
-
   }
 
   void _playPause() {
@@ -43,6 +42,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       }
     });
   }
+
   void _seekTo(double value) {
     final position = Duration(seconds: value.toInt());
     _controller.seekTo(position);
@@ -63,6 +63,14 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
               IconButton(
                 icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow),
                 onPressed: _playPause,
+              ),
+              Slider(
+                min: 0.0,
+                max: _totalDuration,
+                value: _currentPosition,
+                onChanged: _seekTo,
+                activeColor: Colors.blue,
+                inactiveColor: Colors.grey,
               ),
             ],
           );
