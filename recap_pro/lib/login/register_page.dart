@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recap_pro/utils/design.dart';
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
@@ -9,6 +10,10 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Register",style: title,),
+      ),
+    );
   }
 }
