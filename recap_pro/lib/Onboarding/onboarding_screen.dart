@@ -46,9 +46,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               duration: Duration(milliseconds: 500),
                               curve: Curves.easeInOutCirc);
                         },
-                        child: const Text('Next',
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 0, 0, 0)))),
+                        child: const Text('Next', style:(buttonTextStyle))),
                   SmoothPageIndicator(
                     controller: _controller,
                     count: 3,
@@ -62,8 +60,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         }));
                       },
                       child: const Text('Skip',
-                          style:
-                              TextStyle(color: Color.fromARGB(255, 0, 0, 0)))),
+                          style:(buttonTextStyle))),
                 ],
               )),
         ],
