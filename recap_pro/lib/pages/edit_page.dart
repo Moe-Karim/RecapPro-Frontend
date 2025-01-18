@@ -20,7 +20,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   double _totalDuration = 1.0;
 
   bool _isUploading = false;
-
+  List<String> _segments = [];
   @override
   void initState() {
     super.initState();
