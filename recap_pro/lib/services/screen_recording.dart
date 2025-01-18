@@ -4,9 +4,10 @@ import 'package:permission_handler/permission_handler.dart';
 
 class RecordingService {
   bool isRecording = false;
-    void _setRecordingState(bool state) {
+  void _setRecordingState(bool state) {
     isRecording = state;
   }
+
   Future<void> requestPermissions() async {
     await [
       Permission.microphone,
@@ -31,7 +32,11 @@ class RecordingService {
     try {
       String? path = await FlutterScreenRecording.stopRecordScreen;
       _setRecordingState(false);
-      print("Recording saved to: $path");
+      if (path != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Recording saved to: $path")),
+        );
+      }
     } catch (e) {
       print("Error stopping recording: $e");
     }
