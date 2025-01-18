@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
       body: Container(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: (Colors.black),
-        onPressed: () {},
+        onPressed: _handleRecording,
         child: Stack(
           alignment: Alignment.center,
           children: [
