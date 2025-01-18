@@ -16,19 +16,17 @@ class VideoEditingLogic {
     );
     request.files.add(await http.MultipartFile.fromPath("video", _video!.path));
 
-    try{
-            final response = await request.send();
-            if (response.statusCode == 200) {
+    try {
+      final response = await request.send();
+      if (response.statusCode == 200) {
         final responseData = await response.stream.bytesToString();
         final data = json.decode(responseData);
-        return(data);
-            }
-            else {
+        return (data);
+      } else {
         throw Exception('Failed to process video');
       }
-
-    }catch{
-
+    } catch (e) {
+      throw Exception('Error uploading video: $e');
     }
   }
 }
