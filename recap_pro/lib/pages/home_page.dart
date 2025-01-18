@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recap_pro/utils/design.dart';
+import 'package:recap_pro/widgets/bottom_navigation.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -16,6 +17,8 @@ class _HomePageState extends State<HomePage> {
         automaticallyImplyLeading: false,
         title: Text("Home",style: title,),
       ),
+      body: Container(),
+      bottomNavigationBar: BottomNavigation(currentPage: currentPage, onPageSelected: onPageSelected),
     );
   }
 }
