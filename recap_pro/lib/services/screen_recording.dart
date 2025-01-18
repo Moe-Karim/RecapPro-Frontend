@@ -20,7 +20,7 @@ class RecordingService {
       bool result = await FlutterScreenRecording.startRecordScreenAndAudio(
           "recorded_video");
       if (result) {
-        isRecording = true;
+        _setRecordingState(true);
       }
     } catch (e) {
       print("Error starting recording: $e");
