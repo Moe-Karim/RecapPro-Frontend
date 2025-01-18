@@ -26,7 +26,20 @@ class _RegisterPageState extends State<RegisterPage> {
                 margin: EdgeInsets.all(10.0),
                 child: const Align(alignment: Alignment.topLeft,
                 child: Text("First Name",style: loginText,),),
-              )
+              ),
+              SizedBox(height: 5.0,),
+                SizedBox(
+              width: double.infinity,
+              height: 50.0,
+              child: Padding(
+                padding: textFieldPadding,
+                child: TextField(
+                    controller: _fnameController,
+                    style: const TextStyle(fontSize: 18.0),
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(), hintText: "First Name")),
+              ),
+            ),
             ],
         ),
       ),
