@@ -6,6 +6,7 @@ class RecordingService {
     await [
       Permission.microphone,
       Permission.storage,
+      Permission.manageExternalStorage,
     ].request();
   }
 }
