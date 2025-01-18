@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_native_splash: ^2.4.4
   smooth_page_indicator: ^1.2.0+3
+  flutter_screen_recording: ^2.0.19
 
 dev_dependencies:
   flutter_test:
