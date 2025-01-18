@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -19,7 +21,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset(widget.videoPath);
+    _controller = VideoPlayerController.file(File(widget.videoPath));
     _initializeVideoPlayerFuture = _controller.initialize();
     _controller.addListener(() {
       if (_controller.value.isInitialized) {
