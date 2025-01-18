@@ -17,6 +17,14 @@ class _HomePageState extends State<HomePage> {
   bool isRecording = false;
   final ImagePicker _picker = ImagePicker();
 
+  Future<void> getVideo() async {
+  
+  final XFile? pickedFile = await _picker.pickVideo(source: ImageSource.gallery);
+  
+
+}
+
+
   Future<void> _handleRecording() async {
     try {
       if (isRecording) {
