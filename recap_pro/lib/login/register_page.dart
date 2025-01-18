@@ -16,9 +16,14 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-
+            children: [
+              const SizedBox(height: 25.0,),
+              Image.asset("./assets/splash_Text.png",
+              width: 200.0,
+              height: 200.0,),
+            ],
         ),
-      ),,
+      ),
     );
   }
 }
