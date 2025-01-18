@@ -55,7 +55,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edit Video",style: title,),
+        title: Text(
+          "Edit Video",
+          style: title,
+        ),
       ),
       body: FutureBuilder(
         future: _initializeVideoPlayerFuture,
@@ -67,25 +70,30 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                   aspectRatio: _controller.value.aspectRatio,
                   child: VideoPlayer(_controller),
                 ),
-                SizedBox(height: 30.0,),
+                SizedBox(
+                  height: 30.0,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     IconButton(
-                      icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow,size: 50.0,color: Color(0xFF61DBFB),),
+                      icon: Icon(
+                        _isPlaying ? Icons.pause : Icons.play_arrow,
+                        size: 50.0,
+                        color: Color(0xFF61DBFB),
+                      ),
                       onPressed: _playPause,
                     ),
                     Slider(
-                  min: 0.0,
-                  max: _totalDuration,
-                  value: _currentPosition,
-                  onChanged: _seekTo,
-                  activeColor: Color(0xFF61DBFB),
-                  inactiveColor: Colors.black,
-                ),
+                      min: 0.0,
+                      max: _totalDuration,
+                      value: _currentPosition,
+                      onChanged: _seekTo,
+                      activeColor: Color(0xFF61DBFB),
+                      inactiveColor: Colors.black,
+                    ),
                   ],
                 ),
-
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
