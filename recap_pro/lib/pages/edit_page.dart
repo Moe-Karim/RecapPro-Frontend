@@ -13,12 +13,23 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   late VideoPlayerController _controller;
   late Future<void> _initializeVideoPlayerFuture;
   bool _isPlaying = false;
-
+  double _currentPosition = 0.0;
+  double _totalDuration = 1.0;
+  
   @override
   void initState() {
     super.initState();
     _controller = VideoPlayerController.asset(widget.videoPath);
     _initializeVideoPlayerFuture = _controller.initialize();
+        _controller.addListener(() {
+      if (_controller.value.isInitialized) {
+        setState(() {
+          _currentPosition = _controller.value.position.inSeconds.toDouble();
+          _totalDuration = _controller.value.duration.inSeconds.toDouble();
+        });
+      }
+    });
+
   }
 
   void _playPause() {
