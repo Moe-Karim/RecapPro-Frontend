@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:recap_pro/services/screen_recording.dart';
 import 'package:recap_pro/utils/design.dart';
 import 'package:recap_pro/widgets/bottom_navigation.dart';
@@ -14,6 +15,7 @@ class _HomePageState extends State<HomePage> {
   final RecordingService recordingService = RecordingService();
   int currentPage = 0;
   bool isRecording = false;
+  final ImagePicker _picker = ImagePicker();
 
   Future<void> _handleRecording() async {
     try {
@@ -27,6 +29,7 @@ class _HomePageState extends State<HomePage> {
       print("Error toggling recording: $e");
     }
   }
+
   void _onPageSelected(int index) {
     setState(() {
       currentPage = index;
