@@ -22,6 +22,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   bool _isUploading = false;
   String? _result;
+  String? _filePath;
   List<String> _segments = [];
   final _videoEditingLogic = VideoEditingLogic();
 
@@ -31,9 +32,9 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     });
     try {
       final data = await _videoEditingLogic.uploadVideo(File(widget.videoPath));
-      setState(() {
+      setState(() async {
         _segments = List<String>.from(data['segments']);
-        _videoEditingLogic.generateTextFile(data['content']);
+       _filePath = await _videoEditingLogic.generateTextFile(data['content']);
       });
     } catch (e) {
       setState(() {
