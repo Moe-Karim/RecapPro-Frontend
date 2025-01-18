@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recap_pro/utils/design.dart';
 
 class Onboarding2 extends StatelessWidget {
   const Onboarding2({super.key});
@@ -25,11 +26,7 @@ class Onboarding2 extends StatelessWidget {
             ),
             const Text(
               "CONTENT EXTRACTOR",
-              style: TextStyle(
-                fontSize: 24.0,
-                color: Color.fromARGB(255, 0, 0, 0),
-              ),
-            ),
+              style: (title)),
             const SizedBox(
               height: 25.0,
             ),
@@ -37,10 +34,7 @@ class Onboarding2 extends StatelessWidget {
               width: 350.0,
               child: Text(
                 "Effortlessly extract and organize video content with precision and speed.",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Color.fromARGB(255, 0, 0, 0),
-                ),
+                style: (bodyText),
                 textAlign: TextAlign.center,
               ),
             )
