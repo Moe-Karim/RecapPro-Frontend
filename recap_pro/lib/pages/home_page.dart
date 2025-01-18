@@ -29,6 +29,24 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: Container(),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: (Colors.black),
+        onPressed: () {},
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            const Icon(
+              Icons.circle_outlined,
+              color: Color(0xFF61DBFB),
+              size: 40,
+            ),
+            Icon(
+              Icons.circle,
+              color: const Color(0xFF61DBFB),
+            ),
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomNavigation(
           currentPage: currentPage, onPageSelected: _onPageSelected),
     );
