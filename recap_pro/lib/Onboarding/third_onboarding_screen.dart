@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recap_pro/utils/design.dart';
 
 class Onboarding3 extends StatelessWidget {
   const Onboarding3({super.key});
@@ -25,10 +26,7 @@ class Onboarding3 extends StatelessWidget {
             ),
             const Text(
               "VIDEO SEGMENTATION",
-              style: TextStyle(
-                fontSize: 24.0,
-                color: Color.fromARGB(255, 0, 0, 0),
-              ),
+              style: (title)
             ),
             const SizedBox(
               height: 25.0,
@@ -37,10 +35,7 @@ class Onboarding3 extends StatelessWidget {
               width: 350.0,
               child: Text(
                 "Automatically organize recordings into clear, topic-based sections with smart video segmentation.",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Color.fromARGB(255, 0, 0, 0),
-                ),
+                style: (bodyText),
                 textAlign: TextAlign.center,
               ),
             )
