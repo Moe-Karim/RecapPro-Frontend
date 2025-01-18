@@ -23,6 +23,9 @@ class VideoEditingLogic {
         final data = json.decode(responseData);
         return(data);
             }
+            else {
+        throw Exception('Failed to process video');
+      }
 
     }catch{
 
