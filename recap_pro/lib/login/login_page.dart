@@ -10,6 +10,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +59,23 @@ class _LoginPageState extends State<LoginPage> {
                 alignment: Alignment.topLeft,
                 child: Text("Password", style: loginText),
               ),
-            )
+            ),
+            SizedBox(
+              height: 5.0,
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: 50.0,
+              child: Padding(
+                padding: textFieldPadding,
+                child: TextField(
+                  controller: _passwordController,
+                  style: const TextStyle(fontSize: 18.0),
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), hintText: "Password"),
+                ),
+              ),
+            ),
           ],
         ),
       ),
