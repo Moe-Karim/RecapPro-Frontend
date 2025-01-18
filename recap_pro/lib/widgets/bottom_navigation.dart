@@ -55,7 +55,7 @@ class BottomNavigation extends StatelessWidget {
           ),
         ],
         onDestinationSelected: onPageSelected,
-
+        selectedIndex: currentPage,
       ),
     );
   }
