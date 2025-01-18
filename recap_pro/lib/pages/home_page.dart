@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
               size: 40,
             ),
             Icon(
-              Icons.circle,
+              isRecording ? Icons.stop : Icons.circle,
               color: const Color(0xFF61DBFB),
             ),
           ],
