@@ -169,6 +169,22 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                       style: const TextStyle(fontSize: 16),
                     ),
                   ),
+                  if (_segments.isNotEmpty)
+                    Column(
+                      children: _segments.map((segmentUrl) {
+                        return ElevatedButton(
+                          onPressed: () => _downloadVideo(segmentUrl),
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.download, color: Color(0xFF61DBFB)),
+                              SizedBox(width: 8),
+                              Text("Download Video"),
+                            ],
+                          ),
+                        );
+                      }).toList(),
+                    ),
                 ],
               );
             } else {
