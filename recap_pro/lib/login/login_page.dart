@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recap_pro/utils/design.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -42,8 +43,7 @@ class _LoginPageState extends State<LoginPage> {
               width: double.infinity,
               height: 50.0,
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10.0, vertical: 0.0),
+                padding: textFieldPadding,
                 child: TextField(
                     controller: _usernameController,
                     style: const TextStyle(fontSize: 18.0),
