@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
 class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({super.key});
+
+  final int currentPage;
+  final Function(int) onPageSelected;
+
+  const BottomNavigation({
+    super.key,
+    required this.currentPage,
+    required this.onPageSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
