@@ -8,6 +8,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _usernameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +34,23 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                 ),
               ),
-            )
+            ),
+            SizedBox(
+              height: 5.0,
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: 50.0,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10.0, vertical: 0.0),
+                child: TextField(
+                    controller: _usernameController,
+                    style: const TextStyle(fontSize: 18.0),
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(), hintText: "Username")),
+              ),
+            ),
           ],
         ),
       ),
