@@ -51,6 +51,22 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       currentPage = index;
     });
+    switch (index) {
+      case 0:
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const HomePage()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const VideoPlayer()),
+        );
+        break;
+      default:
+        break;
+    }
   }
 
   @override
