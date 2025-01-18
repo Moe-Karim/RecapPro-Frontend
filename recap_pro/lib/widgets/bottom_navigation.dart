@@ -46,6 +46,13 @@ class BottomNavigation extends StatelessWidget {
             ),
             label: 'Profile',
           ),
+          NavigationDestination(
+            icon: Icon(
+              Icons.settings_outlined,
+              color: currentPage == 3 ? Colors.white : const Color(0xFF61DBFB),
+            ),
+            label: 'Settings',
+          ),
         ],
       ),
     );
