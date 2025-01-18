@@ -12,8 +12,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final RecordingService recordingService = RecordingService();
-
   int currentPage = 0;
+  bool isRecording = false;
 
   void _onPageSelected(int index) {
     setState(() {
