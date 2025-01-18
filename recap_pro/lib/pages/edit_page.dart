@@ -33,9 +33,12 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     });
     try {
       final data = await _videoEditingLogic.uploadVideo(File(widget.videoPath));
-      setState(() async {
+      final filePath =
+          await _videoEditingLogic.generateTextFile(data['content']);
+
+      setState(() {
         _segments = List<String>.from(data['segments']);
-        _filePath = await _videoEditingLogic.generateTextFile(data['content']);
+        _filePath = filePath;
       });
     } catch (e) {
       setState(() {
