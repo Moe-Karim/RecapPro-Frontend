@@ -70,6 +70,22 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
             ),
+            SizedBox(height: 5.0,),
+            SizedBox(
+              width: double.infinity,
+              height: 50.0,
+              child: Padding(
+                padding: textFieldPadding,
+                child: TextField(
+                    controller: _lnameController,
+                    style: const TextStyle(fontSize: 18.0),
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(), hintText: "Last Name")),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
           ],
         ),
       ),
