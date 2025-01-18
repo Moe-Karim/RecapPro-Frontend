@@ -10,8 +10,7 @@ import 'package:permission_handler/permission_handler.dart';
 class VideoEditingLogic {
   Future<Map<String, dynamic>>uploadVideo(File _video) async {
     if (_video == null) {
-      print("No video found");
-      return;
+      throw Exception("No video found");
     }
     final request = http.MultipartRequest(
       'POST',
