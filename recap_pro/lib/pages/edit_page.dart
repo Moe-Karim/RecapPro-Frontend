@@ -22,6 +22,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   double _totalDuration = 1.0;
 
   bool _isUploading = false;
+  bool _isDownloading = false;
   String? _result;
   String? _filePath;
   List<String> _segments = [];
@@ -59,6 +60,24 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Text file not found')),
       );
+    }
+  }
+
+  Future<void> _downloadVideo(String videoUrl) async {
+    setState(() {
+      _isDownloading = true;
+    });
+    try {
+      await _videoEditingLogic.downloadVideo(videoUrl);
+    } catch (e) {
+      setState(() {
+        _result = "Error downloading video: $e";
+        print("$e");
+      });
+    } finally {
+      setState(() {
+        _isDownloading = false;
+      });
     }
   }
 
