@@ -23,4 +23,14 @@ class RecordingService {
       print("Error starting recording: $e");
     }
   }
+
+  Future<void> stopRecording() async {
+    try {
+      String? path = await FlutterScreenRecording.stopRecordScreen;
+      isRecording = false;
+      print("Recording saved to: $path");
+    } catch (e) {
+      print("Error stopping recording: $e");
+    }
+  }
 }
