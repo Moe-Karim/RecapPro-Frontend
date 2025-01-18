@@ -15,6 +15,18 @@ class _HomePageState extends State<HomePage> {
   int currentPage = 0;
   bool isRecording = false;
 
+  Future<void> _handleRecording() async {
+    try {
+      if (isRecording) {
+        await recordingService.stopRecording(context);
+      } else {
+        await recordingService.startRecording();
+      }
+      setState(() => isRecording = !isRecording);
+    } catch (e) {
+      print("Error toggling recording: $e");
+    }
+  }
   void _onPageSelected(int index) {
     setState(() {
       currentPage = index;
