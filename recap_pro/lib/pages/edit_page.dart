@@ -34,7 +34,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       final data = await _videoEditingLogic.uploadVideo(File(widget.videoPath));
       setState(() async {
         _segments = List<String>.from(data['segments']);
-       _filePath = await _videoEditingLogic.generateTextFile(data['content']);
+        _filePath = await _videoEditingLogic.generateTextFile(data['content']);
       });
     } catch (e) {
       setState(() {
@@ -45,6 +45,16 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       setState(() {
         _isUploading = false;
       });
+    }
+  }
+
+  Future<void> _downloadTextFile() async {
+    if (_filePath != null) {
+      await OpenFile.open(_filePath!);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Text file not found')),
+      );
     }
   }
 
