@@ -60,10 +60,7 @@ class _HomePageState extends State<HomePage> {
         );
         break;
       case 1:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const VideoPlayer()),
-        );
+        getVideo();
         break;
       default:
         break;
