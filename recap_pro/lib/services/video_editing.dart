@@ -16,7 +16,7 @@ class VideoEditingLogic {
       'POST',
       Uri.parse('http://10.0.2.2:3000/upload'),
     );
-    request.files.add(await http.MultipartFile.fromPath("video", _video!.path));
+    request.files.add(await http.MultipartFile.fromPath("video", _video.path));
 
     try {
       final response = await request.send();
@@ -62,7 +62,7 @@ class VideoEditingLogic {
         throw Exception('Error downloading video: $e');
       }
     } else {
-      print("Storage permission denied");
+      throw Exception("Storage permission denied");
     }
   }
 }
