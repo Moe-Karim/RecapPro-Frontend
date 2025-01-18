@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
 
 class VideoPlayer extends StatefulWidget {
   final String videoPath;
@@ -9,6 +10,7 @@ class VideoPlayer extends StatefulWidget {
 }
 
 class _VideoPlayerState extends State<VideoPlayer> {
+  late VideoPlayerController _controller;
   @override
   Widget build(BuildContext context) {
     return Container();
