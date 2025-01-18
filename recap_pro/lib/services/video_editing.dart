@@ -45,6 +45,11 @@ class VideoEditingLogic {
   Future<void> downloadVideo(String videoUrl) async {
     var status = await Permission.storage.request();
     if (status.isGranted) {
+          try {
+
+    } catch (e) {
+      throw Exception('Error downloading video: $e');
+    }
     } else {
       print("Storage permission denied");
     }
