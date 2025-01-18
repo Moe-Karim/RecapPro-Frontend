@@ -3,6 +3,7 @@ import 'package:flutter_screen_recording/flutter_screen_recording.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class RecordingService {
+  bool isRecording = false;
   Future<void> requestPermissions() async {
     await [
       Permission.microphone,
