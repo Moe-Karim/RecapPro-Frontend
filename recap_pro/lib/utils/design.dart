@@ -16,6 +16,8 @@ const TextStyle loginText = TextStyle(
 
 const TextStyle buttonTextStyle = TextStyle(color: Colors.black);
 
+const textFieldPadding = EdgeInsets.symmetric(horizontal: 10.0, vertical: 0.0);
+
 const ExpandingDotsEffect indicatorEffect = ExpandingDotsEffect(
   activeDotColor: Color(0xFF61DBFB),
   dotColor: Color(0xFFBDBDBD),
