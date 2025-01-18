@@ -10,11 +10,18 @@ class RecordingService {
   }
 
   Future<void> requestPermissions() async {
-    await [
+    var statuses = await [
       Permission.microphone,
       Permission.storage,
       Permission.manageExternalStorage,
     ].request();
+
+    if (statuses[Permission.microphone] != PermissionStatus.granted ||
+        statuses[Permission.storage] != PermissionStatus.granted ||
+        statuses[Permission.manageExternalStorage] !=
+            PermissionStatus.granted) {
+      print("Permissions denied!");
+    }
   }
 
   Future<void> startRecording() async {
@@ -40,9 +47,9 @@ class RecordingService {
         final hasAccess = await Gal.hasAccess();
         if (hasAccess) {
           await Gal.putVideo(path);
-            ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Video saved to gallery")),
-        );
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Video saved to gallery")),
+          );
         }
       }
     } catch (e) {
