@@ -37,6 +37,7 @@ dependencies:
   flutter_native_splash: ^2.4.4
   smooth_page_indicator: ^1.2.0+3
   flutter_screen_recording: ^2.0.19
+  permission_handler: ^11.3.1
 
 dev_dependencies:
   flutter_test:
