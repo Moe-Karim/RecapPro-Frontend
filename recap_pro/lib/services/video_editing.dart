@@ -8,7 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class VideoEditingLogic {
-  Future<void> uploadVideo(File _video) async {
+  Future<Map<String, dynamic>>uploadVideo(File _video) async {
     if (_video == null) {
       print("No video found");
       return;
