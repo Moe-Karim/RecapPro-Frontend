@@ -45,9 +45,12 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                 aspectRatio: _controller.value.aspectRatio,
                 child: VideoPlayer(_controller),
               ),
+              IconButton(
+                icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow),
+                onPressed: _playPause,
+              ),
             ],
           );
-
         } else {
           return const Center(child: CircularProgressIndicator());
         }
