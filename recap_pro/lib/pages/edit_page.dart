@@ -72,6 +72,13 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                 activeColor: Colors.blue,
                 inactiveColor: Colors.grey,
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Text(
+                  '${Duration(seconds: _currentPosition.toInt()).toString().split('.').first} / ${Duration(seconds: _totalDuration.toInt()).toString().split('.').first}',
+                  style: const TextStyle(fontSize: 16),
+                ),
+              ),
             ],
           );
         } else {
