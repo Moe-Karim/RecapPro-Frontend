@@ -21,6 +21,12 @@ class _RegisterPageState extends State<RegisterPage> {
               Image.asset("./assets/splash_Text.png",
               width: 200.0,
               height: 200.0,),
+              SizedBox(height: 20.0,),
+              Container(
+                margin: EdgeInsets.all(10.0),
+                child: const Align(alignment: Alignment.topLeft,
+                child: Text("First Name",style: loginText,),),
+              )
             ],
         ),
       ),
