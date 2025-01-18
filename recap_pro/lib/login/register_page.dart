@@ -112,6 +112,17 @@ class _RegisterPageState extends State<RegisterPage> {
             SizedBox(
               height: 10,
             ),
+                             Container(
+              margin: EdgeInsets.all(10.0),
+              child: const Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "Password",
+                  style: loginText,
+                ),
+              ),
+            ),
+            SizedBox(height: 5.0,),
           ],
         ),
       ),
