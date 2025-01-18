@@ -28,7 +28,7 @@ class RecordingService {
     }
   }
 
-  Future<void> stopRecording() async {
+  Future<void> stopRecording(BuildContext context) async {
     try {
       String? path = await FlutterScreenRecording.stopRecordScreen;
       _setRecordingState(false);
