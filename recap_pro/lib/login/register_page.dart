@@ -9,6 +9,10 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _fnameController = TextEditingController();
+  final TextEditingController _lnameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +74,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
             ),
-            SizedBox(height: 5.0,),
+            SizedBox(
+              height: 5.0,
+            ),
             SizedBox(
               width: double.infinity,
               height: 50.0,
@@ -86,7 +92,7 @@ class _RegisterPageState extends State<RegisterPage> {
             SizedBox(
               height: 10,
             ),
-                 Container(
+            Container(
               margin: EdgeInsets.all(10.0),
               child: const Align(
                 alignment: Alignment.topLeft,
@@ -96,8 +102,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
             ),
-            SizedBox(height: 5.0,),
-                    SizedBox(
+            SizedBox(
+              height: 5.0,
+            ),
+            SizedBox(
               width: double.infinity,
               height: 50.0,
               child: Padding(
@@ -112,7 +120,7 @@ class _RegisterPageState extends State<RegisterPage> {
             SizedBox(
               height: 10,
             ),
-                             Container(
+            Container(
               margin: EdgeInsets.all(10.0),
               child: const Align(
                 alignment: Alignment.topLeft,
@@ -122,8 +130,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
             ),
-            SizedBox(height: 5.0,),
-                            SizedBox(
+            SizedBox(
+              height: 5.0,
+            ),
+            SizedBox(
               width: double.infinity,
               height: 50.0,
               child: Padding(
@@ -138,7 +148,7 @@ class _RegisterPageState extends State<RegisterPage> {
             SizedBox(
               height: 20,
             ),
-             SizedBox(
+            SizedBox(
               width: 250.0,
               height: 50.0,
               child: ElevatedButton(
