@@ -35,7 +35,7 @@ class Onboarding1 extends StatelessWidget {
               width: 350.0,
               child: Text(
                 "Seamlessly restore missing moments with AI-driven gap filling for uninterrupted video clarity",
-                style: 
+                style: (bodyText),
                 textAlign: TextAlign.center,
               ),
             )
