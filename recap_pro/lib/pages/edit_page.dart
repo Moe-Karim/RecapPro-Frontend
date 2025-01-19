@@ -209,6 +209,16 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
               size: 35.0,
             ),
           ),
+            FloatingActionButton(
+            heroTag: "fab3",
+            backgroundColor: Colors.black,
+            onPressed: () {},
+            child: const Icon(
+              Icons.content_cut_sharp,
+              color: Color(0xFF61DBFB),
+              size: 35.0,
+            ),
+          ),
         ],
       )
     );
