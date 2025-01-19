@@ -223,22 +223,22 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
               heroTag: "fab4",
               backgroundColor: Colors.black,
               onPressed: _isUploading
-                  ? null // Disable button when uploading
+                  ? null
                   : (_filePath != null
-                      ? _downloadTextFile // If _filePath is not null, download file
-                      : _uploadVideo), // Otherwise, upload video
+                      ? _downloadTextFile 
+                      : _uploadVideo), 
               child: _isUploading
                   ? const CircularProgressIndicator()
                   : (_filePath != null
                       ? const Icon(
                           Icons
-                              .file_download_outlined, // Show download icon if _filePath exists
+                              .file_download_outlined, 
                           color: Color(0xFF61DBFB),
                           size: 35.0,
                         )
                       : const Icon(
                           Icons
-                              .transcribe_outlined, // Show upload icon if _filePath is null
+                              .transcribe_outlined, 
                           color: Color(0xFF61DBFB),
                           size: 35.0,
                         )),
