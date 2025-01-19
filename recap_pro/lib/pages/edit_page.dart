@@ -116,111 +116,134 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Edit Video",
-          style: title,
+        appBar: AppBar(
+          title: Text(
+            "Edit Video",
+            style: title,
+          ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: FutureBuilder(
-          future: _initializeVideoPlayerFuture,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              return Column(
-                children: [
-                  SizedBox(
-                    height: 300.0,
-                    child: AspectRatio(
-                      aspectRatio: _controller.value.aspectRatio,
-                      child: VideoPlayer(_controller),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30.0,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconButton(
-                        icon: Icon(
-                          _isPlaying ? Icons.pause : Icons.play_arrow,
-                          size: 50.0,
-                          color: Color(0xFF61DBFB),
-                        ),
-                        onPressed: _playPause,
+        body: SingleChildScrollView(
+          child: FutureBuilder(
+            future: _initializeVideoPlayerFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return Column(
+                  children: [
+                    SizedBox(
+                      height: 300.0,
+                      child: AspectRatio(
+                        aspectRatio: _controller.value.aspectRatio,
+                        child: VideoPlayer(_controller),
                       ),
-                      Expanded(
-                        child: Slider(
-                          min: 0.0,
-                          max: _totalDuration,
-                          value: _currentPosition,
-                          onChanged: _seekTo,
-                          activeColor: Color(0xFF61DBFB),
-                          inactiveColor: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Text(
-                      '${Duration(seconds: _currentPosition.toInt()).toString().split('.').first} / ${Duration(seconds: _totalDuration.toInt()).toString().split('.').first}',
-                      style: const TextStyle(fontSize: 16),
                     ),
-                  ),
-                  if (_segments.isNotEmpty)
-                    Column(
-                      children: _segments.map((segmentUrl) {
-                        return ElevatedButton(
-                          onPressed: () => _downloadVideo(segmentUrl),
-                          child: const Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(Icons.download, color: Color(0xFF61DBFB)),
-                              SizedBox(width: 8),
-                              Text("Download Video"),
-                            ],
+                    SizedBox(
+                      height: 30.0,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          icon: Icon(
+                            _isPlaying ? Icons.pause : Icons.play_arrow,
+                            size: 50.0,
+                            color: Color(0xFF61DBFB),
                           ),
-                        );
-                      }).toList(),
+                          onPressed: _playPause,
+                        ),
+                        Expanded(
+                          child: Slider(
+                            min: 0.0,
+                            max: _totalDuration,
+                            value: _currentPosition,
+                            onChanged: _seekTo,
+                            activeColor: Color(0xFF61DBFB),
+                            inactiveColor: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
-                ],
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
-        ),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-                    FloatingActionButton(
-            heroTag: "fab2",
-            backgroundColor: Colors.black,
-            onPressed: () {
-              print("Object");
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Text(
+                        '${Duration(seconds: _currentPosition.toInt()).toString().split('.').first} / ${Duration(seconds: _totalDuration.toInt()).toString().split('.').first}',
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    if (_segments.isNotEmpty)
+                      Column(
+                        children: _segments.map((segmentUrl) {
+                          return ElevatedButton(
+                            onPressed: () => _downloadVideo(segmentUrl),
+                            child: const Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.download, color: Color(0xFF61DBFB)),
+                                SizedBox(width: 8),
+                                Text("Download Video"),
+                              ],
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                  ],
+                );
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
             },
-            child: const Icon(
-              Icons.auto_fix_high_outlined,
-              color: Color(0xFF61DBFB),
-              size: 35.0,
-            ),
           ),
+        ),
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
             FloatingActionButton(
-            heroTag: "fab3",
-            backgroundColor: Colors.black,
-            onPressed: () {},
-            child: const Icon(
-              Icons.content_cut_sharp,
-              color: Color(0xFF61DBFB),
-              size: 35.0,
+              heroTag: "fab2",
+              backgroundColor: Colors.black,
+              onPressed: () {
+                print("Object");
+              },
+              child: const Icon(
+                Icons.auto_fix_high_outlined,
+                color: Color(0xFF61DBFB),
+                size: 35.0,
+              ),
             ),
-          ),
-        ],
-      )
-    );
+            FloatingActionButton(
+              heroTag: "fab3",
+              backgroundColor: Colors.black,
+              onPressed: () {},
+              child: const Icon(
+                Icons.content_cut_sharp,
+                color: Color(0xFF61DBFB),
+                size: 35.0,
+              ),
+            ),
+            FloatingActionButton(
+              heroTag: "fab4",
+              backgroundColor: Colors.black,
+              onPressed: _isUploading
+                  ? null // Disable button when uploading
+                  : (_filePath != null
+                      ? _downloadTextFile // If _filePath is not null, download file
+                      : _uploadVideo), // Otherwise, upload video
+              child: _isUploading
+                  ? const CircularProgressIndicator()
+                  : (_filePath != null
+                      ? const Icon(
+                          Icons
+                              .file_download_outlined, // Show download icon if _filePath exists
+                          color: Color(0xFF61DBFB),
+                          size: 35.0,
+                        )
+                      : const Icon(
+                          Icons
+                              .transcribe_outlined, // Show upload icon if _filePath is null
+                          color: Color(0xFF61DBFB),
+                          size: 35.0,
+                        )),
+            ),
+          ],
+        ));
   }
 }
