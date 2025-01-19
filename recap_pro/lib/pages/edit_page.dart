@@ -196,6 +196,20 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+                    FloatingActionButton(
+            heroTag: "fab2",
+            backgroundColor: Colors.black,
+            onPressed: () {
+              print("Object");
+            },
+            child: const Icon(
+              Icons.auto_fix_high_outlined,
+              color: Color(0xFF61DBFB),
+              size: 35.0,
+            ),
+          ),
+        ],
       )
     );
   }
