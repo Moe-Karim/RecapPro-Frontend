@@ -193,6 +193,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
           },
         ),
       ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.end,
+      )
     );
   }
 }
