@@ -2,14 +2,14 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:gal/gal.dart';
 import 'package:http/http.dart' as http;
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class VideoEditingLogic {
-
-  Future<Map<String, dynamic>>uploadVideo(File _video) async {
+  Future<Map<String, dynamic>> uploadVideo(File _video) async {
     if (_video == null) {
       throw Exception("No video found");
     }
@@ -45,21 +45,22 @@ class VideoEditingLogic {
 
   Future<void> downloadVideo(String videoUrl) async {
     var status = await Permission.storage.request();
-      try {
-        final directory = await getApplicationDocumentsDirectory();
-        final fileName = videoUrl.split('/').last;
-        final filePath = '${directory.path}/$fileName';
-        final file = File(filePath);
+    try {
+      final directory = await getApplicationDocumentsDirectory();
+      final fileName = videoUrl.split('/').last;
+      final filePath = '${directory.path}/$fileName';
+      final file = File(filePath);
 
-        final response = await http.get(Uri.parse(videoUrl));
-        if (response.statusCode == 200) {
-          await file.writeAsBytes(response.bodyBytes);
-          OpenFile.open(filePath);
-        } else {
-          throw Exception('Failed to download video');
-        }
-      } catch (e) {
-        throw Exception('Error downloading video: $e');
+      final response = await http.get(Uri.parse(videoUrl));
+      if (response.statusCode == 200) {
+        await file.writeAsBytes(response.bodyBytes);
+        OpenFile.open(filePath);
+        Gal.putVideo(filePath);
+      } else {
+        throw Exception('Failed to download video');
       }
+    } catch (e) {
+      throw Exception('Error downloading video: $e');
+    }
   }
 }
