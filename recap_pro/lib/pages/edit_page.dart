@@ -25,6 +25,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   bool _isDownloading = false;
   String? _result;
   String? _filePath;
+  String? _subtitled;
   List<String> _segments = [];
   final _videoEditingLogic = VideoEditingLogic();
 
@@ -40,6 +41,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       setState(() {
         _segments = List<String>.from(data['segments']);
         _filePath = filePath;
+        _subtitled = data['subtitles'];
       });
     } catch (e) {
       setState(() {
@@ -64,11 +66,14 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   }
 
   Future<void> _downloadVideo(String videoUrl) async {
+
     setState(() {
       _isDownloading = true;
     });
+      final String baseUrl = "http://192.168.1.107:3000/"; // Update with your actual host and port
+  final String fullUrl = baseUrl + videoUrl;
     try {
-      await _videoEditingLogic.downloadVideo(videoUrl);
+      await _videoEditingLogic.downloadVideo(fullUrl);
     } catch (e) {
       setState(() {
         _result = "Error downloading video: $e";
@@ -185,6 +190,14 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                           );
                         }).toList(),
                       ),
+                    if (_subtitled != null)
+                      ElevatedButton(
+                        onPressed: () {
+                          _downloadVideo(
+                              _subtitled!);
+                        },
+                        child: Text('Download Processed Video'),
+                      )
                   ],
                 );
               } else {
@@ -224,21 +237,17 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
               backgroundColor: Colors.black,
               onPressed: _isUploading
                   ? null
-                  : (_filePath != null
-                      ? _downloadTextFile 
-                      : _uploadVideo), 
+                  : (_filePath != null ? _downloadTextFile : _uploadVideo),
               child: _isUploading
                   ? const CircularProgressIndicator()
                   : (_filePath != null
                       ? const Icon(
-                          Icons
-                              .file_download_outlined, 
+                          Icons.file_download_outlined,
                           color: Color(0xFF61DBFB),
                           size: 35.0,
                         )
                       : const Icon(
-                          Icons
-                              .transcribe_outlined, 
+                          Icons.transcribe_outlined,
                           color: Color(0xFF61DBFB),
                           size: 35.0,
                         )),
