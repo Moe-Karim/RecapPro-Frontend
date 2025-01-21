@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:recap_pro/pages/home_page.dart';
 import 'package:recap_pro/utils/design.dart';
+import 'package:http/http.dart' as http;
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -13,6 +17,34 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _fnameController = TextEditingController();
   final TextEditingController _lnameController = TextEditingController();
+
+
+  Future<void> registerUser(String username, String password, String fname, String lname) async {
+    final url = Uri.parse('http://192.168.1.107:8080/register');
+
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: json.encode({
+        'email': username,
+        'password': password,
+        'fname': fname,
+        'lname': lname
+      }),
+    );
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return const HomePage();
+      }));
+    } else {
+      final data = json.decode(response.body);
+      print('Register failed: ${data['message']}');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
