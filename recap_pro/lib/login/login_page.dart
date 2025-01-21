@@ -32,6 +32,8 @@ class _LoginPageState extends State<LoginPage> {
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
+      final getToken = data['token'];
+      print("token:${getToken}");
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         return const HomePage();
       }));
