@@ -161,7 +161,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                 return Column(
                   children: [
                     SizedBox(
-                      height: 300.0,
+                      height: 400.0,
                       child: AspectRatio(
                         aspectRatio: _controller.value.aspectRatio,
                         child: VideoPlayer(_controller),
@@ -208,88 +208,94 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
             },
           ),
         ),
-        floatingActionButton: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            FloatingActionButton(
-              heroTag: "fab2",
-              backgroundColor: Colors.black,
-              onPressed: _isUploading
-                  ? null
-                  : (_subtitled != null
-                      ? () => {_downloadVideo(_subtitled!)}
-                      : fillVideo),
-              child: _isUploading
-                  ? const CircularProgressIndicator(
-                      color: Color(0xFF61DBFB),
-                    )
-                  : (_subtitled != null
-                      ? const Icon(
-                          Icons.file_download_outlined,
-                          color: Color(0xFF61DBFB),
-                          size: 35.0,
-                        )
-                      : const Icon(
-                          Icons.auto_fix_high_outlined,
-                          color: Color(0xFF61DBFB),
-                          size: 35.0,
-                        )),
-            ),
-            FloatingActionButton(
-              heroTag: "fab3",
-              backgroundColor: Colors.black,
-              onPressed: _isUploading
-                  ? null
-                  : (_segments.isNotEmpty
-                      ? () => {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      VideoSegmentsPage(segments: _segments),
-                                ))
-                          }
-                      : segmentVideo),
-              child: _isUploading
-                  ? const CircularProgressIndicator(
-                      color: Color(0xFF61DBFB),
-                    )
-                  : (_segments.isNotEmpty
-                      ? const Icon(
-                          Icons.file_download_outlined,
-                          color: Color(0xFF61DBFB),
-                          size: 35.0,
-                        )
-                      : const Icon(
-                          Icons.content_cut_sharp,
-                          color: Color(0xFF61DBFB),
-                          size: 35.0,
-                        )),
-            ),
-            FloatingActionButton(
-              heroTag: "fab4",
-              backgroundColor: Colors.black,
-              onPressed: _isUploading
-                  ? null
-                  : (_filePath != null ? _downloadTextFile : transcribeVideo),
-              child: _isUploading
-                  ? const CircularProgressIndicator(
-                      color: Color(0xFF61DBFB),
-                    )
-                  : (_filePath != null
-                      ? const Icon(
-                          Icons.file_download_outlined,
-                          color: Color(0xFF61DBFB),
-                          size: 35.0,
-                        )
-                      : const Icon(
-                          Icons.transcribe_outlined,
-                          color: Color(0xFF61DBFB),
-                          size: 35.0,
-                        )),
-            ),
-          ],
-        ));
+        floatingActionButton: Container(
+          width: double.infinity,
+          height: 100,
+          margin: EdgeInsets.fromLTRB(35,0,0,0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              FloatingActionButton(
+                heroTag: "fab2",
+                backgroundColor: Colors.black,
+                onPressed: _isUploading
+                    ? null
+                    : (_subtitled != null
+                        ? () => {_downloadVideo(_subtitled!)}
+                        : fillVideo),
+                child: _isUploading
+                    ? const CircularProgressIndicator(
+                        color: Color(0xFF61DBFB),
+                      )
+                    : (_subtitled != null
+                        ? const Icon(
+                            Icons.file_download_outlined,
+                            color: Color(0xFF61DBFB),
+                            size: 35.0,
+                          )
+                        : const Icon(
+                            Icons.auto_fix_high_outlined,
+                            color: Color(0xFF61DBFB),
+                            size: 35.0,
+                          )),
+              ),
+              FloatingActionButton(
+                heroTag: "fab3",
+                backgroundColor: Colors.black,
+                onPressed: _isUploading
+                    ? null
+                    : (_segments.isNotEmpty
+                        ? () => {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        VideoSegmentsPage(segments: _segments),
+                                  ))
+                            }
+                        : segmentVideo),
+                child: _isUploading
+                    ? const CircularProgressIndicator(
+                        color: Color(0xFF61DBFB),
+                      )
+                    : (_segments.isNotEmpty
+                        ? const Icon(
+                            Icons.file_download_outlined,
+                            color: Color(0xFF61DBFB),
+                            size: 35.0,
+                          )
+                        : const Icon(
+                            Icons.content_cut_sharp,
+                            color: Color(0xFF61DBFB),
+                            size: 35.0,
+                          )),
+              ),
+              FloatingActionButton(
+                heroTag: "fab4",
+                backgroundColor: Colors.black,
+                onPressed: _isUploading
+                    ? null
+                    : (_filePath != null ? _downloadTextFile : transcribeVideo),
+                child: _isUploading
+                    ? const CircularProgressIndicator(
+                        color: Color(0xFF61DBFB),
+                      )
+                    : (_filePath != null
+                        ? const Icon(
+                            Icons.file_download_outlined,
+                            color: Color(0xFF61DBFB),
+                            size: 35.0,
+                          )
+                        : const Icon(
+                            Icons.transcribe_outlined,
+                            color: Color(0xFF61DBFB),
+                            size: 35.0,
+                          )),
+              ),
+            ],
+          ),
+        ),
+        );
   }
 }
