@@ -27,7 +27,7 @@ class RecordingService {
   Future<void> startRecording() async {
     try {
       bool result = await FlutterScreenRecording.startRecordScreenAndAudio(
-          "recorded_video");
+          "Recap_Pro-${DateTime.now()}");
       if (result) {
         _setRecordingState(true);
       }
@@ -41,16 +41,17 @@ class RecordingService {
       String? path = await FlutterScreenRecording.stopRecordScreen;
       _setRecordingState(false);
       if (path != null) {
+        print(path);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Recording saved to: $path")),
         );
-        final hasAccess = await Gal.hasAccess();
-        if (hasAccess) {
-          await Gal.putVideo(path);
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Video saved to gallery")),
-          );
-        }
+        // final hasAccess = await Gal.hasAccess();
+        // if (hasAccess) {
+        //   await Gal.putVideo(path);
+        //   ScaffoldMessenger.of(context).showSnackBar(
+        //     SnackBar(content: Text("Video saved to gallery")),
+        //   );
+        // }
       }
     } catch (e) {
       print("Error stopping recording: $e");
