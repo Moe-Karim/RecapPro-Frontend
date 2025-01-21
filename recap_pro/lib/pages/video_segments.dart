@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recap_pro/widgets/custom_card.dart';
 
 class VideoSegmentsPage extends StatelessWidget {
   final List<String> segments;
@@ -17,28 +18,11 @@ class VideoSegmentsPage extends StatelessWidget {
             ? ListView.builder(
                 itemCount: segments.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                    margin: const EdgeInsets.symmetric(vertical: 8.0),
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        color: Color(0xFF61DBFB),
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.all(16.0),
-                      title: Text(
-                        'Segment ${index + 1}',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(segments[index]),
-                      trailing: IconButton(
-                        icon: Icon(Icons.download),
-                        onPressed: () {},
-                      ),
-                    ),
-                  );
+                  return CustomCard(
+                      title: 'Segment ${index + 1}',
+                      subtitle:Text(segments[index]),
+                      icon: Icons.download,
+                      onTap: () {});
                 },
               )
             : Center(child: Text('No segments available')),
