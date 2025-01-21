@@ -16,11 +16,10 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
-  // final TextEditingController _lnameController = TextEditingController();
 
   Future<void> registerUser(
       String username, String password, String name) async {
-    final url = Uri.parse('http://192.168.1.107:8080/register');
+    final url = Uri.parse('http://192.168.1.107:3000/register');
 
     final response = await http.post(
       url,
@@ -31,7 +30,6 @@ class _RegisterPageState extends State<RegisterPage> {
         'email': username,
         'password': password,
         'name': name,
-        // 'lname': lname
       }),
     );
 
@@ -102,34 +100,6 @@ class _RegisterPageState extends State<RegisterPage> {
               child: const Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "Last Name",
-                  style: loginText,
-                ),
-              ),
-            ),
-            // SizedBox(
-            //   height: 5.0,
-            // ),
-            // SizedBox(
-            //   width: double.infinity,
-            //   height: 50.0,
-            //   child: Padding(
-            //     padding: textFieldPadding,
-            //     child: TextField(
-            //         controller: _lnameController,
-            //         style: const TextStyle(fontSize: 18.0),
-            //         decoration: const InputDecoration(
-            //             border: OutlineInputBorder(), hintText: "Last Name")),
-            //   ),
-            // ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              margin: EdgeInsets.all(10.0),
-              child: const Align(
-                alignment: Alignment.topLeft,
-                child: Text(
                   "Email",
                   style: loginText,
                 ),
@@ -189,7 +159,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   String username = _emailController.text;
                   String password = _passwordController.text;
                   String name = _nameController.text;
-                  // String lname = _lnameController.text;
 
                   registerUser(username, password, name);
                 },
@@ -197,6 +166,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: Text("Register"),
               ),
             ),
+            SizedBox(height: 30,)
           ],
         ),
       ),
