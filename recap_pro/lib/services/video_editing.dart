@@ -24,7 +24,6 @@ class VideoEditingLogic {
       if (response.statusCode == 200) {
         final responseData = await response.stream.bytesToString();
         final data = json.decode(responseData);
-        print(data);
         return (data);
       } else {
         throw Exception('Failed to process video');
