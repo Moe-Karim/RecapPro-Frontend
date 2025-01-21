@@ -11,8 +11,16 @@ class VideoSegmentsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Video Segments'),
       ),
-      body: Center(
-        child: Text('Video Segments Page'),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: segments.isNotEmpty
+            ? ListView.builder(
+                itemCount: segments.length,
+                itemBuilder: (context, index) {
+                  return Text('Segment ${index + 1}');
+                },
+              )
+            : Center(child: Text('No segments available')),
       ),
     );
   }
