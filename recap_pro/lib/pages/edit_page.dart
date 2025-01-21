@@ -240,14 +240,22 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
             FloatingActionButton(
               heroTag: "fab2",
               backgroundColor: Colors.black,
-              onPressed: () {
-                print("Object");
-              },
-              child: const Icon(
-                Icons.auto_fix_high_outlined,
-                color: Color(0xFF61DBFB),
-                size: 35.0,
-              ),
+              onPressed: _isUploading
+                  ? null
+                  : (_filePath != null ? _downloadTextFile : fillVideo),
+              child:_isUploading
+                  ? const CircularProgressIndicator(color: Color(0xFF61DBFB),)
+                  : (_filePath != null
+                      ? const Icon(
+                          Icons.file_download_outlined,
+                          color: Color(0xFF61DBFB),
+                          size: 35.0,
+                        )
+                      : const Icon(
+                          Icons.auto_fix_high_outlined,
+                          color: Color(0xFF61DBFB),
+                          size: 35.0,
+                        )),
             ),
             FloatingActionButton(
               heroTag: "fab3",
