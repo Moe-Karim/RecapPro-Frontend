@@ -21,7 +21,11 @@ class VideoSegmentsPage extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(vertical: 8.0),
                     child: ListTile(
                       contentPadding: const EdgeInsets.all(16.0),
-                      title: Text('Segment ${index + 1}'),
+                      title: Text(
+                        'Segment ${index + 1}',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      subtitle: Text(segments[index]),
                     ),
                   );
                 },
