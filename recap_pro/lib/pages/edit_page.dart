@@ -95,9 +95,19 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       print("Video not found");
     }
   }
-    Future<void> segmentVideo() async {
+
+  Future<void> segmentVideo() async {
     if ((widget.videoPath) != null) {
       await _uploadVideo("segment");
+      print("video Uploaded");
+    } else {
+      print("Video not found");
+    }
+  }
+
+  Future<void> fillVideo() async {
+    if ((widget.videoPath) != null) {
+      await _uploadVideo("gap-fill");
       print("video Uploaded");
     } else {
       print("Video not found");
