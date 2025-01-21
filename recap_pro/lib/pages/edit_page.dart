@@ -23,8 +23,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   double _totalDuration = 1.0;
 
   bool _isUploading = false;
-  bool _isDownloading = false;
-  String? _result;
   String? _filePath;
   String? _subtitled;
   List<String> _segments = [];
@@ -63,22 +61,12 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   }
 
   Future<void> _downloadVideo(String videoUrl) async {
-    setState(() {
-      _isDownloading = true;
-    });
     final String baseUrl = "http://192.168.1.107:3000/";
     final String fullUrl = baseUrl + videoUrl;
     try {
       await _videoEditingLogic.downloadVideo(fullUrl);
     } catch (e) {
-      setState(() {
-        _result = "Error downloading video: $e";
-        print("$e");
-      });
-    } finally {
-      setState(() {
-        _isDownloading = false;
-      });
+      throw Exception("$e");
     }
   }
 
@@ -254,7 +242,14 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
               onPressed: _isUploading
                   ? null
                   : (_segments.isNotEmpty
-                      ? () => {Navigator.push(context, MaterialPageRoute(builder: (context) =>VideoSegmentsPage(segments: _segments),))}
+                      ? () => {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      VideoSegmentsPage(segments: _segments),
+                                ))
+                          }
                       : segmentVideo),
               child: _isUploading
                   ? const CircularProgressIndicator(
