@@ -3,17 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
 import 'package:video_player/video_player.dart';
 
-class ChewieVideoPlayer extends StatefulWidget {
-  final String videoPath;
+class ChewiePlayerScreen extends StatefulWidget {
+  final String videoPath; // Can be a file path or a URL
+  final bool isNetwork;   // Set true for network videos, false for local
 
-  const ChewieVideoPlayer({super.key, required this.videoPath});
+  const ChewiePlayerScreen({
+    Key? key,
+    required this.videoPath,
+    this.isNetwork = false,
+  }) : super(key: key);
 
   @override
-  State<ChewieVideoPlayer> createState() => _ChewieVideoPlayerState();
+  State<ChewiePlayerScreen> createState() => _ChewiePlayerScreenState();
 }
 
-class _ChewieVideoPlayerState extends State<ChewieVideoPlayer> {
-  late VideoPlayerController _videoController;
+class _ChewiePlayerScreenState extends State<ChewiePlayerScreen> {
+  late VideoPlayerController _controller;
   ChewieController? _chewieController;
 
   @override
@@ -23,14 +28,17 @@ class _ChewieVideoPlayerState extends State<ChewieVideoPlayer> {
   }
 
   Future<void> _initializePlayer() async {
-    _videoController = VideoPlayerController.file(File(widget.videoPath));
-    await _videoController.initialize();
-    
+    // Choose the correct video source
+    _controller = widget.isNetwork
+        ? VideoPlayerController.network(widget.videoPath)
+        : VideoPlayerController.file(File(widget.videoPath));
+
+    await _controller.initialize();
+
     _chewieController = ChewieController(
-      videoPlayerController: _videoController,
+      videoPlayerController: _controller,
       autoPlay: false,
       looping: false,
-      showControls: true,
     );
 
     setState(() {});
@@ -38,7 +46,7 @@ class _ChewieVideoPlayerState extends State<ChewieVideoPlayer> {
 
   @override
   void dispose() {
-    _videoController.dispose();
+    _controller.dispose();
     _chewieController?.dispose();
     super.dispose();
   }
@@ -46,13 +54,10 @@ class _ChewieVideoPlayerState extends State<ChewieVideoPlayer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Video Player")),
+      appBar: AppBar(title: const Text("Chewie Video Player")),
       body: Center(
         child: _chewieController != null && _chewieController!.videoPlayerController.value.isInitialized
-            ? AspectRatio(
-                aspectRatio: _videoController.value.aspectRatio,
-                child: Chewie(controller: _chewieController!),
-              )
+            ? Chewie(controller: _chewieController!)
             : const CircularProgressIndicator(),
       ),
     );
