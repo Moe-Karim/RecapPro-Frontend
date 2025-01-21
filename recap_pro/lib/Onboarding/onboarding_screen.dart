@@ -66,7 +66,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       onPressed: () {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (context) {
-                          return const HomePage();
+                          return const LoginPage();
                         }));
                       },
                       child: const Text('Skip', style: (buttonTextStyle))),
