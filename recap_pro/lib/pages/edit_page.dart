@@ -30,31 +30,25 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   final _videoEditingLogic = VideoEditingLogic();
 
   // ignore: non_constant_identifier_names, use_function_type_syntax_for_parameters
-  Future<void> _uploadVideo(String endpoint) async {
+  Future<Map<String, dynamic>> _uploadVideo(String endpoint) async {
     setState(() {
       _isUploading = true;
     });
-    try {
-      final data = await _videoEditingLogic.uploadVideo(
-          File(widget.videoPath), endpoint);
-      final filePath =
-          await _videoEditingLogic.generateTextFile(data['content']);
+    Map<String, dynamic>? data;
 
-      setState(() {
-        _segments = List<String>.from(data['segments']);
-        _filePath = filePath;
-        _subtitled = data['subtitles'];
-      });
+    try {
+      data = await _videoEditingLogic.uploadVideo(
+          File(widget.videoPath), endpoint);
     } catch (e) {
       setState(() {
-        _result = "Error uploading video: $e";
-        print("$e");
+        throw Exception("Error uploading video: $e");
       });
     } finally {
       setState(() {
         _isUploading = false;
       });
     }
+    return data ?? {};
   }
 
   Future<void> _downloadTextFile() async {
@@ -89,7 +83,14 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   Future<void> transcribeVideo() async {
     if ((widget.videoPath) != null) {
-      await _uploadVideo("transcribe");
+      final data = await _uploadVideo("transcribe");
+      final filePath =
+          await _videoEditingLogic.generateTextFile(data['content']);
+
+      setState(() {
+        _filePath = filePath;
+      });
+
       print("video Uploaded");
     } else {
       print("Video not found");
@@ -98,7 +99,11 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   Future<void> segmentVideo() async {
     if ((widget.videoPath) != null) {
-      await _uploadVideo("segment");
+      final data = await _uploadVideo("segment");
+
+      setState(() {
+        _segments = List<String>.from(data['segments']);
+      });
       print("video Uploaded");
     } else {
       print("Video not found");
@@ -107,7 +112,11 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   Future<void> fillVideo() async {
     if ((widget.videoPath) != null) {
-      await _uploadVideo("gap-fill");
+      final data = await _uploadVideo("gap-fill");
+
+      setState(() {
+        _subtitled = data['subtitles'];
+      });
       print("video Uploaded");
     } else {
       print("Video not found");
@@ -218,13 +227,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                           );
                         }).toList(),
                       ),
-                    if (_subtitled != null)
-                      ElevatedButton(
-                        onPressed: () {
-                          _downloadVideo(_subtitled!);
-                        },
-                        child: Text('Download Processed Video'),
-                      )
                   ],
                 );
               } else {
@@ -242,10 +244,14 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
               backgroundColor: Colors.black,
               onPressed: _isUploading
                   ? null
-                  : (_filePath != null ? _downloadTextFile : fillVideo),
-              child:_isUploading
-                  ? const CircularProgressIndicator(color: Color(0xFF61DBFB),)
-                  : (_filePath != null
+                  : (_subtitled != null
+                      ? () => {_downloadVideo(_subtitled!)}
+                      : fillVideo),
+              child: _isUploading
+                  ? const CircularProgressIndicator(
+                      color: Color(0xFF61DBFB),
+                    )
+                  : (_subtitled != null
                       ? const Icon(
                           Icons.file_download_outlined,
                           color: Color(0xFF61DBFB),
@@ -264,7 +270,9 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                   ? null
                   : (_filePath != null ? _downloadTextFile : segmentVideo),
               child: _isUploading
-                  ? const CircularProgressIndicator(color: Color(0xFF61DBFB),)
+                  ? const CircularProgressIndicator(
+                      color: Color(0xFF61DBFB),
+                    )
                   : (_filePath != null
                       ? const Icon(
                           Icons.file_download_outlined,
@@ -284,7 +292,9 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                   ? null
                   : (_filePath != null ? _downloadTextFile : transcribeVideo),
               child: _isUploading
-                  ? const CircularProgressIndicator(color: Color(0xFF61DBFB),)
+                  ? const CircularProgressIndicator(
+                      color: Color(0xFF61DBFB),
+                    )
                   : (_filePath != null
                       ? const Icon(
                           Icons.file_download_outlined,
