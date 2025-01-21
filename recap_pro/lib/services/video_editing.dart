@@ -9,13 +9,13 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class VideoEditingLogic {
-  Future<Map<String, dynamic>> uploadVideo(File _video) async {
+  Future<Map<String, dynamic>> transcribeVideo(File _video) async {
     if (_video == null) {
       throw Exception("No video found");
     }
     final request = http.MultipartRequest(
       'POST',
-      Uri.parse('http://192.168.1.107:3000/upload'),
+      Uri.parse('http://192.168.1.107:3000/transcribe'),
     );
     request.files.add(await http.MultipartFile.fromPath("video", _video.path));
 
@@ -24,6 +24,55 @@ class VideoEditingLogic {
       if (response.statusCode == 200) {
         final responseData = await response.stream.bytesToString();
         final data = json.decode(responseData);
+        print(data);
+        return (data);
+      } else {
+        throw Exception('Failed to process video');
+      }
+    } catch (e) {
+      throw Exception('Error uploading video: $e');
+    }
+  }
+    Future<Map<String, dynamic>> uploadVideo(File _video) async {
+    if (_video == null) {
+      throw Exception("No video found");
+    }
+    final request = http.MultipartRequest(
+      'POST',
+      Uri.parse('http://192.168.1.107:3000/gap-fill'),
+    );
+    request.files.add(await http.MultipartFile.fromPath("video", _video.path));
+
+    try {
+      final response = await request.send();
+      if (response.statusCode == 200) {
+        final responseData = await response.stream.bytesToString();
+        final data = json.decode(responseData);
+        print(data);
+        return (data);
+      } else {
+        throw Exception('Failed to process video');
+      }
+    } catch (e) {
+      throw Exception('Error uploading video: $e');
+    }
+  }
+    Future<Map<String, dynamic>> uploadVideo(File _video) async {
+    if (_video == null) {
+      throw Exception("No video found");
+    }
+    final request = http.MultipartRequest(
+      'POST',
+      Uri.parse('http://192.168.1.107:3000/gap-fill'),
+    );
+    request.files.add(await http.MultipartFile.fromPath("video", _video.path));
+
+    try {
+      final response = await request.send();
+      if (response.statusCode == 200) {
+        final responseData = await response.stream.bytesToString();
+        final data = json.decode(responseData);
+        print(data);
         return (data);
       } else {
         throw Exception('Failed to process video');
