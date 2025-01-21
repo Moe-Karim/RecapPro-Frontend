@@ -29,12 +29,14 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   List<String> _segments = [];
   final _videoEditingLogic = VideoEditingLogic();
 
-  Future<void> _uploadVideo() async {
+  // ignore: non_constant_identifier_names, use_function_type_syntax_for_parameters
+  Future<void> _uploadVideo(String endpoint) async {
     setState(() {
       _isUploading = true;
     });
     try {
-      final data = await _videoEditingLogic.uploadVideo(File(widget.videoPath));
+      final data = await _videoEditingLogic.uploadVideo(
+          File(widget.videoPath), endpoint);
       final filePath =
           await _videoEditingLogic.generateTextFile(data['content']);
 
@@ -66,12 +68,11 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   }
 
   Future<void> _downloadVideo(String videoUrl) async {
-
     setState(() {
       _isDownloading = true;
     });
-      final String baseUrl = "http://192.168.1.107:3000/";
-  final String fullUrl = baseUrl + videoUrl;
+    final String baseUrl = "http://192.168.1.107:3000/";
+    final String fullUrl = baseUrl + videoUrl;
     try {
       await _videoEditingLogic.downloadVideo(fullUrl);
     } catch (e) {
@@ -83,6 +84,15 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       setState(() {
         _isDownloading = false;
       });
+    }
+  }
+
+  Future<void> transcribeVideo() async {
+    if ((widget.videoPath) != null) {
+      await _uploadVideo("transcribe");
+      print("video Uploaded");
+    } else {
+      print("Video not found");
     }
   }
 
@@ -193,8 +203,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                     if (_subtitled != null)
                       ElevatedButton(
                         onPressed: () {
-                          _downloadVideo(
-                              _subtitled!);
+                          _downloadVideo(_subtitled!);
                         },
                         child: Text('Download Processed Video'),
                       )
@@ -237,7 +246,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
               backgroundColor: Colors.black,
               onPressed: _isUploading
                   ? null
-                  : (_filePath != null ? _downloadTextFile : _uploadVideo),
+                  : (_filePath != null ? _downloadTextFile : transcribeVideo),
               child: _isUploading
                   ? const CircularProgressIndicator()
                   : (_filePath != null
