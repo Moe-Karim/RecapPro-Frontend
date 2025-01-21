@@ -17,7 +17,13 @@ class VideoSegmentsPage extends StatelessWidget {
             ? ListView.builder(
                 itemCount: segments.length,
                 itemBuilder: (context, index) {
-                  return Text('Segment ${index + 1}');
+                  return Card(
+                    margin: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.all(16.0),
+                      title: Text('Segment ${index + 1}'),
+                    ),
+                  );
                 },
               )
             : Center(child: Text('No segments available')),
