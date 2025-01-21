@@ -18,8 +18,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _fnameController = TextEditingController();
   final TextEditingController _lnameController = TextEditingController();
 
-
-  Future<void> registerUser(String username, String password, String fname, String lname) async {
+  Future<void> registerUser(
+      String username, String password, String fname, String lname) async {
     final url = Uri.parse('http://192.168.1.107:8080/register');
 
     final response = await http.post(
@@ -45,6 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
       print('Register failed: ${data['message']}');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -184,7 +185,14 @@ class _RegisterPageState extends State<RegisterPage> {
               width: 250.0,
               height: 50.0,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  String username = _emailController.text;
+                  String password = _passwordController.text;
+                  String fname = _fnameController.text;
+                  String lname = _lnameController.text;
+                  
+                  registerUser(username, password, fname, lname);
+                },
                 style: loginBtn,
                 child: Text("Register"),
               ),
