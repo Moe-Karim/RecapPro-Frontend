@@ -19,6 +19,7 @@ class VideoSegmentsPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Card(
                     margin: const EdgeInsets.symmetric(vertical: 8.0),
+                    color: Color(0xFF61DBFB),
                     child: ListTile(
                       contentPadding: const EdgeInsets.all(16.0),
                       title: Text(
@@ -26,6 +27,11 @@ class VideoSegmentsPage extends StatelessWidget {
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(segments[index]),
+                      trailing: IconButton(
+                        icon: Icon(Icons.download),
+                        onPressed: () {
+                        },
+                      ),
                     ),
                   );
                 },
