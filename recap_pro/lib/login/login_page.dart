@@ -5,6 +5,7 @@ import 'package:recap_pro/login/register_page.dart';
 import 'package:recap_pro/pages/home_page.dart';
 import 'package:recap_pro/utils/design.dart';
 import 'package:http/http.dart' as http;
+import 'package:recap_pro/services/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,6 +17,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  AuthService authService = AuthService();
+
   Future<void> loginUser(String username, String password) async {
     final url = Uri.parse('http://192.168.1.107:3000/login');
 
@@ -33,7 +36,8 @@ class _LoginPageState extends State<LoginPage> {
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       final getToken = data['token'];
-      print("token:${getToken}");
+      authService.storeToken(getToken);
+
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         return const HomePage();
       }));
