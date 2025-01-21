@@ -70,7 +70,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     setState(() {
       _isDownloading = true;
     });
-      final String baseUrl = "http://192.168.1.107:3000/"; // Update with your actual host and port
+      final String baseUrl = "http://192.168.1.107:3000/";
   final String fullUrl = baseUrl + videoUrl;
     try {
       await _videoEditingLogic.downloadVideo(fullUrl);
