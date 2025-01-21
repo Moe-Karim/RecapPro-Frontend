@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:recap_pro/pages/chewi_video_player.dart';
 import 'package:recap_pro/pages/edit_page.dart';
 import 'package:recap_pro/services/screen_recording.dart';
 import 'package:recap_pro/widgets/custom_card.dart';
@@ -114,11 +115,11 @@ class _HomePageState extends State<HomePage> {
                   subtitle: _buildFileSize(videoFiles[index]),
                   icon: Icons.play_arrow_outlined,
                   onTap: () {
-                    _controller = VideoPlayerController.file(videoFiles[index])
-                      ..initialize().then((_) {
-                        setState(() {});
-                        _controller.play();
-                      });
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ChewiePlayerScreen(
+                                videoPath: videoFiles[index].path)));
                   },
                 );
               },
