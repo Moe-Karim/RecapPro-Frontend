@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
+import 'package:recap_pro/pages/video_segments.dart';
 import 'package:recap_pro/services/video_editing.dart';
 import 'package:recap_pro/utils/design.dart';
 import 'package:video_player/video_player.dart';
@@ -211,22 +212,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                         style: const TextStyle(fontSize: 16),
                       ),
                     ),
-                    if (_segments.isNotEmpty)
-                      Column(
-                        children: _segments.map((segmentUrl) {
-                          return ElevatedButton(
-                            onPressed: () => _downloadVideo(segmentUrl),
-                            child: const Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(Icons.download, color: Color(0xFF61DBFB)),
-                                SizedBox(width: 8),
-                                Text("Download Video"),
-                              ],
-                            ),
-                          );
-                        }).toList(),
-                      ),
                   ],
                 );
               } else {
@@ -268,12 +253,14 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
               backgroundColor: Colors.black,
               onPressed: _isUploading
                   ? null
-                  : (_filePath != null ? _downloadTextFile : segmentVideo),
+                  : (_segments.isNotEmpty
+                      ? () => {Navigator.push(context, MaterialPageRoute(builder: (context) =>VideoSegmentsPage(segments: _segments),))}
+                      : segmentVideo),
               child: _isUploading
                   ? const CircularProgressIndicator(
                       color: Color(0xFF61DBFB),
                     )
-                  : (_filePath != null
+                  : (_segments.isNotEmpty
                       ? const Icon(
                           Icons.file_download_outlined,
                           color: Color(0xFF61DBFB),
