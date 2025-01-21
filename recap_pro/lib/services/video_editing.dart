@@ -9,6 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class VideoEditingLogic {
+
   Future<Map<String, dynamic>> uploadVideo(File _video , endpoint) async {
     if (_video == null) {
       throw Exception("No video found");
