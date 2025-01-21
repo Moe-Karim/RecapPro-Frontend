@@ -15,11 +15,11 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _fnameController = TextEditingController();
-  final TextEditingController _lnameController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  // final TextEditingController _lnameController = TextEditingController();
 
   Future<void> registerUser(
-      String username, String password, String fname, String lname) async {
+      String username, String password, String name) async {
     final url = Uri.parse('http://192.168.1.107:8080/register');
 
     final response = await http.post(
@@ -30,12 +30,12 @@ class _RegisterPageState extends State<RegisterPage> {
       body: json.encode({
         'email': username,
         'password': password,
-        'fname': fname,
-        'lname': lname
+        'name': name,
+        // 'lname': lname
       }),
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       final data = json.decode(response.body);
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         return const HomePage();
@@ -74,7 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
               child: const Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  "First Name",
+                  "Full Name",
                   style: loginText,
                 ),
               ),
@@ -88,10 +88,10 @@ class _RegisterPageState extends State<RegisterPage> {
               child: Padding(
                 padding: textFieldPadding,
                 child: TextField(
-                    controller: _fnameController,
+                    controller: _nameController,
                     style: const TextStyle(fontSize: 18.0),
                     decoration: const InputDecoration(
-                        border: OutlineInputBorder(), hintText: "First Name")),
+                        border: OutlineInputBorder(), hintText: "Full Name")),
               ),
             ),
             SizedBox(
@@ -107,21 +107,21 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 5.0,
-            ),
-            SizedBox(
-              width: double.infinity,
-              height: 50.0,
-              child: Padding(
-                padding: textFieldPadding,
-                child: TextField(
-                    controller: _lnameController,
-                    style: const TextStyle(fontSize: 18.0),
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(), hintText: "Last Name")),
-              ),
-            ),
+            // SizedBox(
+            //   height: 5.0,
+            // ),
+            // SizedBox(
+            //   width: double.infinity,
+            //   height: 50.0,
+            //   child: Padding(
+            //     padding: textFieldPadding,
+            //     child: TextField(
+            //         controller: _lnameController,
+            //         style: const TextStyle(fontSize: 18.0),
+            //         decoration: const InputDecoration(
+            //             border: OutlineInputBorder(), hintText: "Last Name")),
+            //   ),
+            // ),
             SizedBox(
               height: 10,
             ),
@@ -188,10 +188,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 onPressed: () {
                   String username = _emailController.text;
                   String password = _passwordController.text;
-                  String fname = _fnameController.text;
-                  String lname = _lnameController.text;
-                  
-                  registerUser(username, password, fname, lname);
+                  String name = _nameController.text;
+                  // String lname = _lnameController.text;
+
+                  registerUser(username, password, name);
                 },
                 style: loginBtn,
                 child: Text("Register"),
