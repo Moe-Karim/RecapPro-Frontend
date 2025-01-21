@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recap_pro/pages/chewi_video_player.dart';
 import 'package:recap_pro/widgets/custom_card.dart';
 
 class VideoSegmentsPage extends StatelessWidget {
@@ -22,7 +23,11 @@ class VideoSegmentsPage extends StatelessWidget {
                       title: 'Segment ${index + 1}',
                       subtitle:Text(segments[index]),
                       icon: Icons.download,
-                      onTap: () {});
+                      onTap: () {Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ChewiePlayerScreen(
+                                    videoPath: "http://192.168.1.107:3000/${segments[index]}",isNetwork: true,)));});
                 },
               )
             : Center(child: Text('No segments available')),
