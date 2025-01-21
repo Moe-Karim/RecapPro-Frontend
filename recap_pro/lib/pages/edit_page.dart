@@ -252,12 +252,22 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
             FloatingActionButton(
               heroTag: "fab3",
               backgroundColor: Colors.black,
-              onPressed: () {},
-              child: const Icon(
-                Icons.content_cut_sharp,
-                color: Color(0xFF61DBFB),
-                size: 35.0,
-              ),
+              onPressed: _isUploading
+                  ? null
+                  : (_filePath != null ? _downloadTextFile : segmentVideo),
+              child: _isUploading
+                  ? const CircularProgressIndicator(color: Color(0xFF61DBFB),)
+                  : (_filePath != null
+                      ? const Icon(
+                          Icons.file_download_outlined,
+                          color: Color(0xFF61DBFB),
+                          size: 35.0,
+                        )
+                      : const Icon(
+                          Icons.content_cut_sharp,
+                          color: Color(0xFF61DBFB),
+                          size: 35.0,
+                        )),
             ),
             FloatingActionButton(
               heroTag: "fab4",
@@ -266,7 +276,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                   ? null
                   : (_filePath != null ? _downloadTextFile : transcribeVideo),
               child: _isUploading
-                  ? const CircularProgressIndicator()
+                  ? const CircularProgressIndicator(color: Color(0xFF61DBFB),)
                   : (_filePath != null
                       ? const Icon(
                           Icons.file_download_outlined,
