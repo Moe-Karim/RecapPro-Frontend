@@ -94,7 +94,7 @@ class _HomePageState extends State<HomePage> {
       case 3:
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) =>  SettingsPage()),
+          MaterialPageRoute(builder: (context) =>  HomePage()),
         );
         break;
       default:
@@ -121,12 +121,15 @@ class _HomePageState extends State<HomePage> {
                   title: videoFiles[index].path.split('/').last,
                   subtitle: _buildFileSize(videoFiles[index]),
                   icon: Icons.play_arrow_outlined,
-                  onTap: () {
+                  onIconTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => ChewiePlayerScreen(
                                 videoPath: videoFiles[index].path)));
+                  },
+                  onDownloadTap: () {
+
                   },
                 );
               },
