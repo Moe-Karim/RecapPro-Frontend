@@ -41,10 +41,10 @@ class BottomNavigation extends StatelessWidget {
           ),
           NavigationDestination(
             icon: Icon(
-              Icons.person_outline_rounded,
+              Icons.video_collection_outlined,
               color: currentPage == 2 ? Colors.white : const Color(0xFF61DBFB),
             ),
-            label: 'Profile',
+            label: 'Projects',
           ),
           NavigationDestination(
             icon: Icon(

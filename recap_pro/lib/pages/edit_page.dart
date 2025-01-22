@@ -149,6 +149,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: true,
           title: Text(
             "Edit Video",
             style: title,
@@ -162,7 +163,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                 return Column(
                   children: [
                     SizedBox(
-                      height: 400.0,
+                      height: 300,
                       child: AspectRatio(
                         aspectRatio: _controller.value.aspectRatio,
                         child: VideoPlayer(_controller),
