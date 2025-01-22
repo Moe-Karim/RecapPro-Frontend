@@ -37,7 +37,6 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Card(
-        color: Colors.white,
         margin: margin,
         shape: shape,
         child: Column(
