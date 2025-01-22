@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recap_pro/controllers/user_controller.dart';
+import 'package:recap_pro/controllers/video_controller.dart';
 import 'package:recap_pro/services/auth_service.dart';
 import 'package:recap_pro/services/theme_provider.dart';
 import 'package:recap_pro/utils/design.dart';
@@ -13,6 +14,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   AuthService authService = AuthService();
   UserController user = UserController();
+  VideoController video = VideoController();
 
   final TextEditingController _oldPasswordController = TextEditingController();
   final TextEditingController _newPasswordController = TextEditingController();
@@ -27,7 +29,7 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   void clearVideos() {
-    print("Videos cleared");
+    video.deleteAllVideos(context);
   }
 
   void logOut() {
