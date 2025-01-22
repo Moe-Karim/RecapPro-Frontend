@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:recap_pro/pages/home_page.dart';
 import 'package:recap_pro/utils/design.dart';
-import 'package:http/http.dart' as http;
+import 'package:recap_pro/controllers/user_controller.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -13,36 +10,10 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  UserController user = UserController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
-
-  Future<void> registerUser(
-      String username, String password, String name) async {
-    final url = Uri.parse('http://192.168.1.107:3000/register');
-
-    final response = await http.post(
-      url,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: json.encode({
-        'email': username,
-        'password': password,
-        'name': name,
-      }),
-    );
-
-    if (response.statusCode == 201) {
-      final data = json.decode(response.body);
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return const HomePage();
-      }));
-    } else {
-      final data = json.decode(response.body);
-      print('Register failed: ${data['message']}');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -160,13 +131,15 @@ class _RegisterPageState extends State<RegisterPage> {
                   String password = _passwordController.text;
                   String name = _nameController.text;
 
-                  registerUser(username, password, name);
+                  user.registerUser(username, password, name,context);
                 },
                 style: loginBtn,
                 child: Text("Register"),
               ),
             ),
-            SizedBox(height: 30,)
+            SizedBox(
+              height: 30,
+            )
           ],
         ),
       ),
