@@ -37,4 +37,33 @@ AuthService authService = AuthService();
     }
   }
 
+    Future<void> registerUser(
+      String username, String password, String name, BuildContext context) async {
+    final url = Uri.parse('http://192.168.1.107:3000/register');
+
+    final response = await http.post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: json.encode({
+        'email': username,
+        'password': password,
+        'name': name,
+      }),
+    );
+
+    if (response.statusCode == 201) {
+      final data = json.decode(response.body);
+      final getToken = data['token'];
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return const HomePage();
+      }));
+    } else {
+      final data = json.decode(response.body);
+      print('Register failed: ${data['message']}');
+    }
+  }
+
+
   }
