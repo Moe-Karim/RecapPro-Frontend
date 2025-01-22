@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:gal/gal.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:recap_pro/pages/chewi_video_player.dart';
 import 'package:recap_pro/pages/edit_page.dart';
@@ -83,7 +84,7 @@ class _HomePageState extends State<HomePage> {
     });
     switch (index) {
       case 0:
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const HomePage()),
         );
@@ -92,15 +93,24 @@ class _HomePageState extends State<HomePage> {
         _getVideoFromGallery();
         break;
       case 3:
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) =>  HomePage()),
+          MaterialPageRoute(builder: (context) => SettingsPage()),
         );
         break;
       default:
         break;
     }
   }
+
+  Future<void> _downloadVideo(String videoPath) async {
+        final hasAccess = await Gal.hasAccess();
+        if (hasAccess) {
+          await Gal.putVideo(videoPath);
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Video saved to gallery")),
+          );
+        }  }
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                                 videoPath: videoFiles[index].path)));
                   },
                   onDownloadTap: () {
-
+                    _downloadVideo(videoFiles[index].path);
                   },
                 );
               },
