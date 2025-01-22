@@ -40,12 +40,6 @@ class RecordingService {
     try {
       String? path = await FlutterScreenRecording.stopRecordScreen;
       _setRecordingState(false);
-      if (path != null) {
-        print(path);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Recording saved to: $path")),
-        );
-      }
     } catch (e) {
       print("Error stopping recording: $e");
     }

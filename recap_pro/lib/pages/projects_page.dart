@@ -40,8 +40,8 @@ class _ProjectsPageState extends State<ProjectsPage> {
               itemCount: videoData.length,
               itemBuilder: (context, index) {
                 return CustomCard(
-                  title: videoData[index]['path']!,
-                  subtitle: Text('Video file path: ${videoData[index]['createdAt']}'),
+                  title: videoData[index]['path'].split('/').last!,
+                  subtitle: Text('${videoData[index]['createdAt']}'),
                   icon: Icons.play_arrow_outlined,
                   onIconTap: () {
                     Navigator.push(
