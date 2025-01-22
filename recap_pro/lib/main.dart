@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:recap_pro/Onboarding/onboarding_screen.dart';
 import 'package:recap_pro/pages/home_page.dart';
+import 'package:recap_pro/pages/main_page.dart';
 import 'package:recap_pro/services/theme_provider.dart';
 import 'package:recap_pro/services/auth_service.dart';
 
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
                 }
 
                 if (snapshot.hasData && snapshot.data != null) {
-                  return HomePage(); 
+                  return MainPage();
                 } else {
                   return OnboardingScreen(); 
                 }

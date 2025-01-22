@@ -22,7 +22,6 @@ class _HomePageState extends State<HomePage> {
   final RecordingService recordingService = RecordingService();
   int currentPage = 0;
   bool isRecording = false;
-  final ImagePicker _picker = ImagePicker();
   List<File> videoFiles = [];
   late VideoPlayerController _controller;
 
@@ -46,23 +45,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  Future<void> _getVideoFromGallery() async {
-    final XFile? pickedFile =
-        await _picker.pickVideo(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => VideoPlayerScreen(videoPath: pickedFile.path),
-        ),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No video selected')),
-      );
-    }
-  }
-
   Future<void> _toggleRecording() async {
     try {
       if (isRecording) {
@@ -76,37 +58,6 @@ class _HomePageState extends State<HomePage> {
       setState(() => isRecording = !isRecording);
     } catch (e) {
       print("Error toggling recording: $e");
-    }
-  }
-
-  void _onPageSelected(int index) {
-    setState(() {
-      currentPage = index;
-    });
-    switch (index) {
-      case 0:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const HomePage()),
-        );
-        break;
-      case 1:
-        _getVideoFromGallery();
-        break;
-      case 2:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const ProjectsPage()),
-        );
-        break;
-      case 3:
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => SettingsPage()),
-        );
-        break;
-      default:
-        break;
     }
   }
 
@@ -169,10 +120,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigation(
-        currentPage: currentPage,
-        onPageSelected: _onPageSelected,
       ),
     );
   }
