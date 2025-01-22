@@ -25,13 +25,13 @@ class MyApp extends StatelessWidget {
               future: authService.getToken(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator(); // Wait for token check
+                  return CircularProgressIndicator(); 
                 }
 
                 if (snapshot.hasData && snapshot.data != null) {
-                  return HomePage(); // Navigate to the Home page if token exists
+                  return HomePage(); 
                 } else {
-                  return OnboardingScreen(); // Show login page if no token
+                  return OnboardingScreen(); 
                 }
               },
             ),
@@ -41,15 +41,20 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  ThemeData lightTheme() {
-    return ThemeData(
-      brightness: Brightness.light,
-      primaryColor: Color(0xFF61DBFB),
-      appBarTheme: AppBarTheme(color: Colors.white),
-      scaffoldBackgroundColor: Colors.white,
-    );
-  }
-
+ThemeData lightTheme() {
+  return ThemeData(
+    brightness: Brightness.light, 
+    primaryColor: Color(0xFF61DBFB),
+    appBarTheme: AppBarTheme(color: Colors.white), 
+    scaffoldBackgroundColor: Colors.white,
+    cardTheme: CardTheme(
+      color: Colors.white, 
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ), 
+    ),
+  );
+}
   ThemeData darkTheme() {
     return ThemeData(
       brightness: Brightness.dark,
