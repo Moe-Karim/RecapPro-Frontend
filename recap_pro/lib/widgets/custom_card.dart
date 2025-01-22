@@ -5,17 +5,25 @@ class CustomCard extends StatelessWidget {
   final Widget subtitle;
   final IconData icon;
   final Widget? child;
-  final VoidCallback onTap;
   final EdgeInsetsGeometry margin;
   final ShapeBorder shape;
+  final Icon downloadIcon;
+  final VoidCallback onIconTap;
+  final VoidCallback onDownloadTap;
 
   CustomCard({
+    required this.onIconTap,
+    required this.onDownloadTap,
     required this.title,
     required this.subtitle,
     required this.icon,
     this.child,
-    required this.onTap,
-    this.margin = const EdgeInsets.symmetric(vertical: 15.0,horizontal: 10.0),
+    this.downloadIcon = const Icon(
+      Icons.download_outlined,
+      color: Color(0xFF61DBFB),
+      size: 30.0,
+    ),
+    this.margin = const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
     this.shape = const RoundedRectangleBorder(
       side: BorderSide(
         color: Color(0xFF61DBFB),
@@ -28,16 +36,36 @@ class CustomCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
       child: Card(
+        color: Colors.white,
         margin: margin,
         shape: shape,
         child: Column(
           children: [
-            ListTile(
-              leading: Icon(icon, color: Color(0xFF61DBFB)),
-              title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
-              subtitle: (subtitle),
+            Row(
+              spacing: 15,
+              children: [
+                Expanded(
+                  child: ListTile(
+                    title: Text(title,
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                    subtitle: subtitle,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: onIconTap,
+                  child: Icon(
+                    icon,
+                    color: Color(0xFF61DBFB),
+                    size: 30,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: onDownloadTap,
+                  child: downloadIcon,
+                ),
+                SizedBox()
+              ],
             ),
             if (child != null) child!,
           ],
