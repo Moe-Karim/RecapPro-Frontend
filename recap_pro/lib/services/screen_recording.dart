@@ -45,13 +45,6 @@ class RecordingService {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text("Recording saved to: $path")),
         );
-        // final hasAccess = await Gal.hasAccess();
-        // if (hasAccess) {
-        //   await Gal.putVideo(path);
-        //   ScaffoldMessenger.of(context).showSnackBar(
-        //     SnackBar(content: Text("Video saved to gallery")),
-        //   );
-        // }
       }
     } catch (e) {
       print("Error stopping recording: $e");

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:recap_pro/controllers/user_controller.dart';
 import 'package:recap_pro/services/auth_service.dart';
 import 'package:recap_pro/services/theme_provider.dart';
 import 'package:recap_pro/utils/design.dart';
@@ -11,12 +12,14 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   AuthService authService = AuthService();
+  UserController user = UserController();
 
   final TextEditingController _oldPasswordController = TextEditingController();
   final TextEditingController _newPasswordController = TextEditingController();
 
   void updatePassword() {
-    print("Password updated");
+    user.changePassword(
+        _oldPasswordController.text, _newPasswordController.text, context);
   }
 
   void deleteAccount() {
@@ -84,7 +87,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       'Change Password',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    onTap: deleteAccount,
+                    onTap: updatePassword,
                   ),
                 ],
               ),
