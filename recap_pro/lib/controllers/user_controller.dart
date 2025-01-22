@@ -1,14 +1,16 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:recap_pro/main.dart';
 import 'package:recap_pro/pages/home_page.dart';
 import 'package:recap_pro/services/auth_service.dart';
-class UserController {
-  
-AuthService authService = AuthService();
 
-  Future<void> loginUser(String username, String password,bool _isChecked ,BuildContext context) async {
-    final url = Uri.parse('http://192.168.1.107:3000/login');
+class UserController {
+  AuthService authService = AuthService();
+
+  Future<void> loginUser(String username, String password, bool _isChecked,
+      BuildContext context) async {
+    final url = Uri.parse('http://192.168.1.107:3000/auth/login');
 
     final response = await http.post(
       url,
@@ -37,8 +39,8 @@ AuthService authService = AuthService();
     }
   }
 
-    Future<void> registerUser(
-      String username, String password, String name, BuildContext context) async {
+  Future<void> registerUser(String username, String password, String name,
+      BuildContext context) async {
     final url = Uri.parse('http://192.168.1.107:3000/register');
 
     final response = await http.post(
@@ -65,5 +67,30 @@ AuthService authService = AuthService();
     }
   }
 
+  Future<void> changePassword(
+      String currentPassword, String newPassword, BuildContext context) async {
+    final url = Uri.parse('http://192.168.1.107:3000/auth/password');
+    final token = await authService.getToken();
+    final response = await http.put(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+      body: json.encode({
+        'currentPassword': currentPassword,
+        'newPassword': newPassword,
+      }),
+    );
 
+    if (response.statusCode == 200) {
+      print(response.body);
+      final data = json.decode(response.body);
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Password changed succesfully')));
+    } else {
+      final data = json.decode(response.body);
+      print('Login failed: ${data['message']}');
+    }
   }
+}
