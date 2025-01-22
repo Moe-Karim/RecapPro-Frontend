@@ -14,6 +14,13 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController;
+    _passwordController;
+    _nameController;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +138,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   String password = _passwordController.text;
                   String name = _nameController.text;
 
-                  user.registerUser(username, password, name,context);
+                  user.registerUser(username, password, name, context);
                 },
                 style: loginBtn,
                 child: Text("Register"),

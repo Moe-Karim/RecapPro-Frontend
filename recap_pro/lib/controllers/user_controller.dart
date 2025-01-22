@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:recap_pro/login/login_page.dart';
 import 'package:recap_pro/main.dart';
 import 'package:recap_pro/pages/home_page.dart';
 import 'package:recap_pro/services/auth_service.dart';
@@ -35,7 +36,7 @@ class UserController {
       }));
     } else {
       final data = json.decode(response.body);
-      print('Login failed: ${data['message']}');
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text ('Login failed: ${data['message']}')));
     }
   }
 
@@ -84,13 +85,34 @@ class UserController {
     );
 
     if (response.statusCode == 200) {
-      print(response.body);
       final data = json.decode(response.body);
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Password changed succesfully')));
     } else {
       final data = json.decode(response.body);
-      print('Login failed: ${data['message']}');
+      print('password failed: ${data['message']}');
+    }
+  }
+
+  Future<void> deleteUser(BuildContext context) async {
+    final url = Uri.parse('http://192.168.1.107:3000/auth/delete');
+    final token = await authService.getToken();
+    final response = await http.delete(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('Account deleted')));
+      authService.logOut(context);
+    } else {
+      final data = json.decode(response.body);
+      print('password failed: ${data['message']}');
     }
   }
 }

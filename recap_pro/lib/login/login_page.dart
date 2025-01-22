@@ -15,6 +15,13 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isChecked = false;
+  
+  @override
+  void dispose() {
+    super.dispose();
+    _usernameController;
+    _passwordController;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
                   String username = _usernameController.text;
                   String password = _passwordController.text;
-                  user.loginUser(username, password,_isChecked,context);
+                  user.loginUser(username, password, _isChecked, context);
                 },
                 style: loginBtn,
                 child: Text("Login"),

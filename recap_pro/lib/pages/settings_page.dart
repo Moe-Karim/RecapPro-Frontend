@@ -23,7 +23,7 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   void deleteAccount() {
-    print("Account deleted");
+    user.deleteUser(context);
   }
 
   void clearVideos() {
