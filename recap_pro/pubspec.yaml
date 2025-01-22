@@ -59,6 +59,12 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
 
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/splash_NoText.png"
+  min_sdk_android: 21
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -79,6 +85,7 @@ flutter:
     - assets/Onboarding2.png
     - assets/Onboarding3.png
     - assets/splash_Text.png
+    - assets/splash_NoText.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
