@@ -104,13 +104,14 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _downloadVideo(String videoPath) async {
-        final hasAccess = await Gal.hasAccess();
-        if (hasAccess) {
-          await Gal.putVideo(videoPath);
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Video saved to gallery")),
-          );
-        }  }
+    final hasAccess = await Gal.hasAccess();
+    if (hasAccess) {
+      await Gal.putVideo(videoPath);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Video saved to gallery")),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
