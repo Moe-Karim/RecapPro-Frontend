@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:gal/gal.dart';
 import 'package:recap_pro/pages/chewi_video_player.dart';
 import 'package:recap_pro/widgets/custom_card.dart';
+import 'package:recap_pro/services/video_editing.dart';
 
 class VideoSegmentsPage extends StatelessWidget {
   final List<String> segments;
 
   VideoSegmentsPage({Key? key, required this.segments}) : super(key: key);
+  VideoEditingLogic editor = VideoEditingLogic();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class VideoSegmentsPage extends StatelessWidget {
                   return CustomCard(
                     title: 'Segment ${index + 1}',
                     subtitle: Text(segments[index]),
-                    icon: Icons.download,
+                    icon: Icons.play_arrow_outlined,
                     onIconTap: () {
                       Navigator.push(
                         context,
@@ -35,7 +38,14 @@ class VideoSegmentsPage extends StatelessWidget {
                         ),
                       );
                     },
-                    onDownloadTap: (){},
+                    onDownloadTap: () {
+                      editor.downloadVideo(
+                        "http://192.168.1.107:3000/${segments[index]}",
+                      );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Video saved to gallery")),
+                        );
+                    },
                   );
                 },
               )
