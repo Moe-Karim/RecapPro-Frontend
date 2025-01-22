@@ -17,6 +17,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isChecked = false;
+
   AuthService authService = AuthService();
 
   Future<void> loginUser(String username, String password) async {
@@ -36,7 +38,9 @@ class _LoginPageState extends State<LoginPage> {
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
       final getToken = data['token'];
-      authService.storeToken(getToken);
+      if (_isChecked) {
+        authService.storeToken(getToken);
+      }
 
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         return const HomePage();
@@ -117,6 +121,21 @@ class _LoginPageState extends State<LoginPage> {
                       border: OutlineInputBorder(), hintText: "Password"),
                 ),
               ),
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('Remember Me', style: TextStyle(fontSize: 16)),
+                Checkbox(
+                  value: _isChecked,
+                  onChanged: (value) {
+                    setState(() {
+                      _isChecked = value!;
+                    });
+                  },
+                  activeColor: Color(0xFF61DBFB),
+                ),
+              ],
             ),
             SizedBox(
               height: 20.0,
