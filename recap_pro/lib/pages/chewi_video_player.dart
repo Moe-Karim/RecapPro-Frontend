@@ -28,7 +28,6 @@ class _ChewiePlayerScreenState extends State<ChewiePlayerScreen> {
   }
 
   Future<void> _initializePlayer() async {
-    // Choose the correct video source
     _controller = widget.isNetwork
         ? VideoPlayerController.network(widget.videoPath)
         : VideoPlayerController.file(File(widget.videoPath));

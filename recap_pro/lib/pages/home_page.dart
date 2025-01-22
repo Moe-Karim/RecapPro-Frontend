@@ -4,6 +4,7 @@ import 'package:gal/gal.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:recap_pro/pages/chewi_video_player.dart';
 import 'package:recap_pro/pages/edit_page.dart';
+import 'package:recap_pro/pages/projects_page.dart';
 import 'package:recap_pro/pages/settings_page.dart';
 import 'package:recap_pro/services/screen_recording.dart';
 import 'package:recap_pro/widgets/custom_card.dart';
@@ -91,6 +92,12 @@ class _HomePageState extends State<HomePage> {
         break;
       case 1:
         _getVideoFromGallery();
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const ProjectsPage()),
+        );
         break;
       case 3:
         Navigator.push(

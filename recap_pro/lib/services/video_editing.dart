@@ -11,7 +11,7 @@ import 'package:recap_pro/services/auth_service.dart';
 class VideoEditingLogic {
   AuthService authService = AuthService();
 
-  
+
  Future<Map<String, dynamic>> uploadVideo(File _video, String endpoint) async {
   if (_video == null) {
     throw Exception("No video found");
