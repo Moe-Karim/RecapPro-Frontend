@@ -4,8 +4,8 @@ import 'package:chewie/chewie.dart';
 import 'package:video_player/video_player.dart';
 
 class ChewiePlayerScreen extends StatefulWidget {
-  final String videoPath; // Can be a file path or a URL
-  final bool isNetwork;   // Set true for network videos, false for local
+  final String videoPath; 
+  final bool isNetwork;   
 
   const ChewiePlayerScreen({
     Key? key,

@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:recap_pro/login/login_page.dart';
 import 'package:recap_pro/main.dart';
 import 'package:recap_pro/pages/home_page.dart';
+import 'package:recap_pro/pages/main_page.dart';
 import 'package:recap_pro/services/auth_service.dart';
 
 class UserController {
@@ -32,7 +33,7 @@ class UserController {
       }
 
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-        return const HomePage();
+        return const MainPage();
       }));
     } else {
       final data = json.decode(response.body);
@@ -60,7 +61,7 @@ class UserController {
       final data = json.decode(response.body);
       final getToken = data['token'];
       Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return const HomePage();
+        return const MainPage();
       }));
     } else {
       final data = json.decode(response.body);

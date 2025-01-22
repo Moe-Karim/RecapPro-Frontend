@@ -11,14 +11,14 @@ class Onboarding3 extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              width: double.infinity, // Full width of the screen
+              width: double.infinity, 
               constraints: const BoxConstraints(
-                maxHeight: 500.0, // Set a maximum height
+                maxHeight: 500.0, 
               ),
               child: Image.asset(
-                "./assets/Onboarding3.png", // Corrected image path
+                "./assets/Onboarding3.png", 
                 fit: BoxFit
-                    .cover, // Optional: Adjusts how the image fits within the constraints
+                    .cover, 
               ),
             ),
             const SizedBox(

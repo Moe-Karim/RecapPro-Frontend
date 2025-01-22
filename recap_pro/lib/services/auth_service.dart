@@ -18,6 +18,6 @@ class AuthService {
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => const LoginPage()),
-      (Route<dynamic> route) => false, // Ensures that the user can't go back
+      (Route<dynamic> route) => false,
     );  }
 }

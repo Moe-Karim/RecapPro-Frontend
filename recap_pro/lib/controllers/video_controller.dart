@@ -30,7 +30,7 @@ class VideoController {
   Future<List<Map<String, dynamic>>> getAllVideos(BuildContext context) async {
     final url = Uri.parse('http://192.168.1.107:3000/videos/');
     final token =
-        await authService.getToken(); // Ensure token is retrieved properly
+        await authService.getToken();
     try {
       final response = await http.get(
         url,
@@ -51,7 +51,6 @@ class VideoController {
         return [];
       }
     } catch (e) {
-      // Handle errors
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Error: $e'),
       ));
