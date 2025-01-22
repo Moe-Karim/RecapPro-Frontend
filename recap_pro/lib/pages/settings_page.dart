@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:recap_pro/main.dart';
+import 'package:recap_pro/services/auth_service.dart';
 import 'package:recap_pro/services/theme_provider.dart';
 import 'package:recap_pro/utils/design.dart';
-import 'package:recap_pro/widgets/custom_card.dart';
-import 'package:recap_pro/services/auth_service.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -14,13 +12,8 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   AuthService authService = AuthService();
 
-  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _oldPasswordController = TextEditingController();
   final TextEditingController _newPasswordController = TextEditingController();
-
-  void updateName() {
-    print("Name updated: ${_nameController.text}");
-  }
 
   void updatePassword() {
     print("Password updated");
@@ -41,109 +34,125 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Settings'),
-          elevation: 0,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          child: ListView(children: [
-            CustomCard(
-              title: 'Change Name',
-              subtitle: Text('Update your name'),
-              icon: Icons.edit,
-              onTap: updateName,
-              child: TextField(
-                controller: _nameController,
-                decoration: InputDecoration(labelText: 'New Name'),
-              ),
-            ),
-            Divider(),
-            CustomCard(
-              title: 'Change Password',
-              subtitle: Text('Update your password'),
-              icon: Icons.lock,
-              onTap: updatePassword,
+      appBar: AppBar(
+        title: Text('Settings'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        child: ListView(
+          children: [
+            Card(
+              margin: EdgeInsets.symmetric(vertical: 10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextField(
-                    controller: _oldPasswordController,
-                    obscureText: true,
-                    decoration: InputDecoration(labelText: 'Old Password'),
+                  ListTile(
+                    leading: Icon(Icons.lock),
+                    title: Text(
+                      'Change Password',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    subtitle: Text('Update your password'),
                   ),
-                  TextField(
-                    controller: _newPasswordController,
-                    obscureText: true,
-                    decoration: InputDecoration(labelText: 'New Password'),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: TextField(
+                        scrollPadding: EdgeInsets.all(10),
+                        controller: _oldPasswordController,
+                        obscureText: true,
+                        decoration: InputDecoration(labelText: 'Old Password'),
+                      ),
+                    ),
                   ),
-                  ElevatedButton(
-                    onPressed: updatePassword,
-                    child: Text("Update Password"),
+                  SizedBox(
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: TextField(
+                        controller: _newPasswordController,
+                        obscureText: true,
+                        decoration: InputDecoration(labelText: 'New Password'),
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                    leading:
+                        Icon(Icons.password_outlined, color: Color(0xFF61DBFB)),
+                    title: Text(
+                      'Change Password',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    onTap: deleteAccount,
                   ),
                 ],
               ),
             ),
             Divider(),
-            CustomCard(
-              title: 'Dark Mode',
-              subtitle: Text('Toggle dark mode on/off'),
-              icon: Icons.brightness_6,
-              child: SwitchListTile(
-                title: Text("Enable Dark Mode"),
-                value: Provider.of<ThemeProvider>(context).isDarkMode,
-                onChanged: (bool value) {
-                  Provider.of<ThemeProvider>(context, listen: false)
-                      .toggleTheme();
-                },
+            Card(
+              margin: EdgeInsets.symmetric(vertical: 10.0),
+              child: ListTile(
+                leading: Icon(
+                  Icons.brightness_6,
+                  color: Color(0xFF61DBFB),
+                ),
+                title: Text(
+                  "Enable Dark Mode",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                trailing: Switch(
+                  activeColor: Color(0xFF61DBFB),
+                  value: Provider.of<ThemeProvider>(context).isDarkMode,
+                  onChanged: (bool value) {
+                    Provider.of<ThemeProvider>(context, listen: false)
+                        .toggleTheme();
+                  },
+                ),
               ),
-              onTap: () {},
             ),
             Divider(),
-            CustomCard(
-                title: 'Delete Account',
+            Card(
+              margin: EdgeInsets.symmetric(vertical: 10.0),
+              child: ListTile(
+                leading: Icon(Icons.delete, color: Colors.red),
+                title: Text(
+                  'Delete Account',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 subtitle: Text('Remove your account permanently'),
-                icon: Icons.delete,
-                onTap: () {},
-                child: GestureDetector(
-                  onTap: deleteAccount,
-                  child: const Text(
-                    "Delete Account",
-                    style: TextStyle(
-                      color: Colors.red,
-                    ),
-                  ),
-                )),
+                onTap: deleteAccount,
+              ),
+            ),
             Divider(),
-            CustomCard(
-                title: 'Clear Videos',
+            Card(
+              margin: EdgeInsets.symmetric(vertical: 10.0),
+              child: ListTile(
+                leading: Icon(Icons.delete_forever, color: Colors.red),
+                title: Text(
+                  'Clear Videos',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 subtitle: Text('Remove all videos from your account'),
-                icon: Icons.delete_forever,
-                onTap: () {},
-                child: GestureDetector(
-                  onTap: deleteAccount,
-                  child: const Text(
-                    "Clear Videos",
-                    style: TextStyle(
-                      color: Colors.red,
-                    ),
-                  ),
-                )),
+                onTap: clearVideos,
+              ),
+            ),
             Divider(),
-            CustomCard(
-                title: 'Log Out',
+            Card(
+              margin: EdgeInsets.symmetric(vertical: 10.0),
+              child: ListTile(
+                leading: Icon(Icons.exit_to_app, color: Colors.red),
+                title: Text(
+                  'Log Out',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 subtitle: Text('Sign out of your account'),
-                icon: Icons.exit_to_app,
-                onTap: (logOut) ,
-                child: GestureDetector(
-                  child: const Text(
-                    "Log Out",
-                    style: TextStyle(
-                      color: Colors.red,
-                    ),
-                  ),
-                )),
-          ]),
-        ));
+                onTap: logOut,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
