@@ -1,11 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:recap_pro/login/register_page.dart';
-import 'package:recap_pro/pages/home_page.dart';
 import 'package:recap_pro/utils/design.dart';
-import 'package:http/http.dart' as http;
-import 'package:recap_pro/services/auth_service.dart';
+import 'package:recap_pro/controllers/user_controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,41 +11,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  UserController user = UserController();
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isChecked = false;
-
-  AuthService authService = AuthService();
-
-  Future<void> loginUser(String username, String password) async {
-    final url = Uri.parse('http://192.168.1.107:3000/login');
-
-    final response = await http.post(
-      url,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: json.encode({
-        'email': username,
-        'password': password,
-      }),
-    );
-
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      final getToken = data['token'];
-      if (_isChecked) {
-        authService.storeToken(getToken);
-      }
-
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return const HomePage();
-      }));
-    } else {
-      final data = json.decode(response.body);
-      print('Login failed: ${data['message']}');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
                   String username = _usernameController.text;
                   String password = _passwordController.text;
-                  loginUser(username, password);
+                  user.loginUser(username, password,_isChecked,context);
                 },
                 style: loginBtn,
                 child: Text("Login"),
