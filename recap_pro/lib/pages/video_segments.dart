@@ -20,14 +20,23 @@ class VideoSegmentsPage extends StatelessWidget {
                 itemCount: segments.length,
                 itemBuilder: (context, index) {
                   return CustomCard(
-                      title: 'Segment ${index + 1}',
-                      subtitle:Text(segments[index]),
-                      icon: Icons.download,
-                      onTap: () {Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ChewiePlayerScreen(
-                                    videoPath: "http://192.168.1.107:3000/${segments[index]}",isNetwork: true,)));});
+                    title: 'Segment ${index + 1}',
+                    subtitle: Text(segments[index]),
+                    icon: Icons.download,
+                    onIconTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ChewiePlayerScreen(
+                            videoPath:
+                                "http://192.168.1.107:3000/${segments[index]}",
+                            isNetwork: true,
+                          ),
+                        ),
+                      );
+                    },
+                    onDownloadTap: (){},
+                  );
                 },
               )
             : Center(child: Text('No segments available')),
